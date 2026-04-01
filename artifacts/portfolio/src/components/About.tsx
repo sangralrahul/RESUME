@@ -19,7 +19,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="flex flex-col space-y-8">
             <p className="font-['DM_Sans'] text-[#9CA3AF] text-lg leading-relaxed">
-              Based in Samba, J&K, India. I'm a data analyst and AI developer with hands-on experience
+              Based in India. I'm a data analyst and AI developer with hands-on experience
               across SQL, Python, Tableau, Power BI, and LLM-powered tooling. I've built production
               analytics systems, completed simulations at Deloitte and JPMorgan, and I'm the founder
               of Clavix Technologies Pvt. Ltd. — the parent company behind Aethex, an AI medical SaaS
@@ -35,7 +35,7 @@ export default function About() {
                 🌐 Remote or On-Site
               </span>
               <span className="bg-[#1A1A28] border border-[rgba(124,58,237,0.25)] text-[#EDEDED] font-['DM_Sans'] px-4 py-2 rounded-full text-sm">
-                🇮🇳 Samba, J&K, India
+                🇮🇳 India
               </span>
             </div>
           </div>
