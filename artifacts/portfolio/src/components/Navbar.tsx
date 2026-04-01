@@ -34,9 +34,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center">
-            <a href="#" className="h-10 px-4 rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#A855F7] flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.35)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] transition-all">
-              <span className="font-['Syne'] font-bold text-sm text-white tracking-[0.3em] uppercase">r a h u l</span>
-            </a>
+            <a href="#" className="font-['Syne'] font-bold text-sm text-white tracking-[0.25em]">r a h u l</a>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
