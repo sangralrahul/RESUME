@@ -88,7 +88,7 @@ export default function Ventures() {
                       <p className="font-['DM_Sans'] text-[#9CA3AF] text-xs">AI Assistant by Aethex</p>
                     </div>
                   </div>
-                  <a href="https://aethex.in" target="_blank" rel="noopener noreferrer" data-testid="link-cadus-from-clavix" className="text-[#06B6D4] hover:text-[#22d3ee] text-sm">aethex.in ↗</a>
+                  <a href="https://aethex.in/ai-assistant" target="_blank" rel="noopener noreferrer" data-testid="link-cadus-from-clavix" className="text-[#06B6D4] hover:text-[#22d3ee] text-sm">aethex.in/ai-assistant ↗</a>
                 </div>
                 <p className="font-['DM_Sans'] text-[#EDEDED] text-sm leading-relaxed flex-grow">
                   Cadus is the intelligent AI assistant inside Aethex — answering clinical queries, guiding students, and powering smart decisions for healthcare professionals.
@@ -157,7 +157,7 @@ export default function Ventures() {
             </div>
             
             <h4 className="font-['Syne'] font-bold text-2xl text-white mb-1 pr-24">Cadus — The AI Brain of Aethex</h4>
-            <p className="font-['DM_Sans'] text-[#9CA3AF] text-sm mb-6">Powered by Aethex · aethex.in</p>
+            <p className="font-['DM_Sans'] text-[#9CA3AF] text-sm mb-6">Powered by Aethex · aethex.in/ai-assistant</p>
             
             <p className="font-['DM_Sans'] text-[#EDEDED] mb-6 leading-relaxed flex-grow">
               Cadus is the intelligent AI assistant embedded within Aethex. Designed for healthcare professionals and medical students, Cadus answers clinical questions, surfaces relevant medical data, and provides smart guidance — making AI genuinely useful in healthcare.
@@ -180,7 +180,7 @@ export default function Ventures() {
             
             <div className="mt-auto">
               <a 
-                href="https://aethex.in" 
+                href="https://aethex.in/ai-assistant" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 data-testid="btn-cadus-detail"
