@@ -24,8 +24,8 @@ export default function Hero() {
             {/* Rahul Sangral Logo / Avatar */}
             <div className="flex items-center gap-5">
               <div className="relative flex-shrink-0">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#A855F7] flex items-center justify-center shadow-[0_0_30px_rgba(168,85,247,0.4)]">
-                  <span className="font-['Syne'] font-bold text-2xl text-white tracking-tight">RS</span>
+                <div className="h-14 px-4 rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#A855F7] flex items-center justify-center shadow-[0_0_30px_rgba(168,85,247,0.4)]">
+                  <span className="font-['Syne'] font-bold text-lg text-white tracking-[0.3em] uppercase">r a h u l</span>
                 </div>
                 <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#22c55e] border-2 border-[#0A0A0F]" title="Available" />
               </div>
