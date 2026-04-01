@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 interface Project {
   badge: string;
@@ -8,7 +8,7 @@ interface Project {
   description: string;
   stat: string;
   tags: string[];
-  github: string;
+  pdf?: string;
   demo?: string;
   demoLabel?: string;
   glow?: boolean;
@@ -23,7 +23,7 @@ const projects: Project[] = [
       'LLM-powered analytics tool that auto-ingests CSV/Excel datasets and generates business summaries, trend charts, and anomaly alerts in seconds. Drag-and-drop UI — no code required.',
     stat: '60% faster analysis',
     tags: ['Claude API', 'Python', 'Streamlit', 'Pandas'],
-    github: 'https://github.com/sangralrahul/ai-data-insights-engine',
+    pdf: '/ai-data-insights-engine.pdf',
   },
   {
     badge: 'Open Source · 2025–2026',
@@ -32,16 +32,16 @@ const projects: Project[] = [
       'Retrieval-Augmented Generation pipeline that lets you query any PDF or document set using natural language. Built with Claude API and a FastAPI backend — deployed on AWS EC2.',
     stat: '< 2s query response',
     tags: ['Claude API', 'FastAPI', 'RAG', 'Python', 'AWS'],
-    github: 'https://github.com/sangralrahul/rag-document-intelligence',
+    pdf: '/rag-document-intelligence.pdf',
   },
   {
     badge: 'Open Source · 2025',
     title: 'SQL KPI Automator',
     description:
-      'Python CLI + dashboard that connects to any PostgreSQL or MySQL database, auto-detects key metrics, and generates ready-to-share Tableau-style HTML reports — saving 10+ hours of manual reporting weekly.',
+      'Python CLI + dashboard that connects to any PostgreSQL or MySQL database, auto-detects key metrics, and generates ready-to-share reports — saving 10+ hours of manual reporting weekly.',
     stat: '10+ hrs/week saved',
     tags: ['Python', 'SQL', 'PostgreSQL', 'Pandas', 'Streamlit'],
-    github: 'https://github.com/sangralrahul/sql-kpi-automator',
+    pdf: '/sql-kpi-automator.pdf',
   },
   {
     badge: 'Open Source · 2026',
@@ -50,7 +50,7 @@ const projects: Project[] = [
       'A developer toolkit for testing, comparing, and optimising LLM prompts across Claude, Bedrock, and Vertex AI. Version-control your prompts, A/B test outputs, and track token costs in real time.',
     stat: '3 AI providers supported',
     tags: ['Claude API', 'Vertex AI', 'Amazon Bedrock', 'React', 'FastAPI'],
-    github: 'https://github.com/sangralrahul/promptlab',
+    pdf: '/promptlab.pdf',
   },
   {
     badge: 'Startup · 2025–2026',
@@ -59,7 +59,6 @@ const projects: Project[] = [
       'Role-based analytics dashboards and REST API integrations for an AI medical platform targeting Indian doctors and students. Seed round: ₹2 Crore ask.',
     stat: '₹2Cr Seed Round',
     tags: ['React', 'FastAPI', 'Claude API', 'Docker', 'AWS'],
-    github: 'https://github.com/sangralrahul',
     demo: 'https://aethex.in',
     demoLabel: 'Visit Aethex →',
     glow: true,
@@ -130,36 +129,25 @@ export default function Projects() {
                 ))}
               </div>
 
-              <div className="flex gap-3 mt-auto">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-testid={`btn-github-${idx}`}
-                  className="flex items-center gap-2 flex-1 justify-center py-2.5 rounded-lg font-['DM_Sans'] font-medium text-sm text-[#EDEDED] bg-[#12121A] border border-[rgba(124,58,237,0.25)] hover:border-[#A855F7] hover:text-white transition-all"
-                >
-                  <FaGithub className="text-base" />
-                  GitHub
-                </a>
-
+              <div className="mt-auto">
                 {project.demo ? (
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-testid={`btn-demo-${idx}`}
-                    className="flex items-center gap-2 flex-1 justify-center py-2.5 rounded-lg font-['DM_Sans'] font-medium text-sm text-white bg-gradient-to-r from-[#7C3AED] to-[#A855F7] hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all"
+                    className="flex items-center gap-2 w-full justify-center py-3 rounded-lg font-['DM_Sans'] font-medium text-sm text-white bg-gradient-to-r from-[#7C3AED] to-[#A855F7] hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all"
                   >
                     <FaExternalLinkAlt className="text-xs" />
                     {project.demoLabel ?? 'Live Demo'}
                   </a>
                 ) : (
                   <a
-                    href={project.github}
+                    href={project.pdf}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-testid={`btn-demo-${idx}`}
-                    className="flex items-center gap-2 flex-1 justify-center py-2.5 rounded-lg font-['DM_Sans'] font-medium text-sm text-white bg-gradient-to-r from-[#7C3AED] to-[#A855F7] hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all"
+                    data-testid={`btn-view-${idx}`}
+                    className="flex items-center gap-2 w-full justify-center py-3 rounded-lg font-['DM_Sans'] font-medium text-sm text-white bg-gradient-to-r from-[#7C3AED] to-[#A855F7] hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all"
                   >
                     <FaExternalLinkAlt className="text-xs" />
                     View Project
