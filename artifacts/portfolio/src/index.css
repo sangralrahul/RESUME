@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-purple-core: var(--purple-core);
+  --color-purple-bright: var(--purple-bright);
+  --color-purple-glow: var(--purple-glow);
+  --color-purple-dim: var(--purple-dim);
+  --color-amber-accent: var(--amber);
+  --color-cyan-accent: var(--cyan);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+}
+
+:root {
+  --bg-primary: #0A0A0F;
+  --bg-secondary: #12121A;
+  --bg-card: #1A1A28;
+  --purple-core: #7C3AED;
+  --purple-bright: #A855F7;
+  --purple-glow: #C084FC;
+  --purple-dim: #4C1D95;
+  --accent-white: #F8F8FF;
+  --text-primary: #EDEDED;
+  --text-muted: #9CA3AF;
+  --border-subtle: rgba(124, 58, 237, 0.25);
+  --glow-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+  --amber: #F59E0B;
+  --cyan: #06B6D4;
+
+  --background: 240 60% 3.7%;
+  --foreground: 0 0% 93%;
+  --card: 248 33% 12.5%;
+  --card-foreground: 0 0% 93%;
+  --border: 262 81% 58%;
+  --primary: 262 83% 58%;
+  --primary-foreground: 0 0% 100%;
+  --muted: 248 25% 9%;
+  --muted-foreground: 220 9% 65%;
+  --accent: 280 89% 64%;
+  --accent-foreground: 0 0% 100%;
+  --secondary: 248 33% 12.5%;
+  --secondary-foreground: 0 0% 93%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 262 81% 40%;
+  --ring: 262 83% 58%;
+}
+
+.dark {
+  --bg-primary: #0A0A0F;
+  --bg-secondary: #12121A;
+  --bg-card: #1A1A28;
+  --purple-core: #7C3AED;
+  --purple-bright: #A855F7;
+  --purple-glow: #C084FC;
+  --purple-dim: #4C1D95;
+  --accent-white: #F8F8FF;
+  --text-primary: #EDEDED;
+  --text-muted: #9CA3AF;
+  --border-subtle: rgba(124, 58, 237, 0.25);
+  --glow-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+  --amber: #F59E0B;
+  --cyan: #06B6D4;
+
+  --background: 240 60% 3.7%;
+  --foreground: 0 0% 93%;
+  --card: 248 33% 12.5%;
+  --card-foreground: 0 0% 93%;
+  --border: 262 81% 58%;
+  --primary: 262 83% 58%;
+  --primary-foreground: 0 0% 100%;
+  --muted: 248 25% 9%;
+  --muted-foreground: 220 9% 65%;
+  --accent: 280 89% 64%;
+  --accent-foreground: 0 0% 100%;
+  --secondary: 248 33% 12.5%;
+  --secondary-foreground: 0 0% 93%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 262 81% 40%;
+  --ring: 262 83% 58%;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans antialiased bg-[#0A0A0F] text-[#EDEDED];
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #12121A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #7C3AED;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #A855F7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.delay-0 { animation-delay: 0s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-800 { animation-delay: 0.8s; }
+
+.section-enter {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-enter.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

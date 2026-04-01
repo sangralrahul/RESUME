@@ -1,0 +1,413 @@
+Build me a complete, production-ready personal portfolio website for Rahul Sangral — a Data Analyst / AI Engineer / Founder. The site must be deploy-ready with zero placeholders. Use React + Vite + Tailwind CSS.
+
+==============================================
+🎨 DESIGN SYSTEM — BOLD PURPLE DARK
+==============================================
+
+Color Palette (CSS variables):
+  --bg-primary: #0A0A0F
+  --bg-secondary: #12121A
+  --bg-card: #1A1A28
+  --purple-core: #7C3AED
+  --purple-bright: #A855F7
+  --purple-glow: #C084FC
+  --purple-dim: #4C1D95
+  --accent-white: #F8F8FF
+  --text-primary: #EDEDED
+  --text-muted: #9CA3AF
+  --border-subtle: rgba(124, 58, 237, 0.25)
+  --glow-shadow: 0 0 40px rgba(168, 85, 247, 0.3)
+  --amber: #F59E0B
+  --cyan: #06B6D4
+
+Typography:
+  - Headings: "Syne" (Google Fonts) — heavy weight, punchy
+  - Body: "DM Sans" (Google Fonts) — clean, readable
+  - Mono accents: "JetBrains Mono" — for tags/skills/code bits
+
+Global Styles:
+  - Dark background everywhere (#0A0A0F)
+  - Purple gradient mesh background blob (position: fixed, z-index: 0, opacity: 0.15) — large radial gradient centered at top-right
+  - All cards: bg #1A1A28, border: 1px solid var(--border-subtle), border-radius: 16px
+  - Hover on cards: border-color shifts to --purple-bright, box-shadow: var(--glow-shadow)
+  - Smooth scroll, scroll-triggered fade-in animations using Intersection Observer
+  - Custom scrollbar: thin, purple thumb
+  - No custom cursor
+
+==============================================
+📐 SITE STRUCTURE — SINGLE PAGE
+==============================================
+
+NAVBAR (sticky top)
+  - Left: "RS" logo mark in purple, bold Syne font
+  - Right nav links: About · Skills · Ventures · Projects · Experience · Certifications · Contact
+  - Mobile: hamburger menu
+  - On scroll: backdrop-blur + subtle purple border-bottom
+
+==============================================
+1. HERO SECTION
+==============================================
+
+Full viewport height.
+
+Top-left label tag styled like code (JetBrains Mono, purple):
+  <available for work />
+
+Center layout:
+  - Headline (Syne 700, massive): "Rahul Sangral"
+  - Sub-headline: "Data Analyst · AI Engineer · Builder"
+  - Founder line (smaller, purple-glow, Syne): "Founder — Clavix Technologies · Aethex · Cadus"
+  - Body paragraph (DM Sans, muted):
+    "I turn messy data into decisions. I build AI tools that actually ship.
+     I'm the founder of Clavix Technologies and building Aethex — an AI medical SaaS platform —
+     and Cadus, an intelligent AI assistant for healthcare professionals."
+  - Two CTA buttons:
+      → "View My Work" (filled, purple gradient bg, scrolls to Projects)
+      → "Download Resume" (outlined, purple border, href="/resume.pdf")
+
+Right side (desktop): animated floating card stack — 3 mini stat cards with gentle CSS keyframe float:
+  * "60% faster analysis" — AI Data Engine
+  * "40% fewer ad-hoc requests" — KPI Dashboard
+  * "10+ hrs/week saved" — SND Technologies
+
+Bottom: bouncing scroll-down arrow
+
+==============================================
+2. ABOUT SECTION
+==============================================
+
+Section label (JetBrains Mono, purple): "// about me"
+
+Two columns:
+
+LEFT:
+  - Short bio:
+    "Based in Samba, J&K, India. I'm a data analyst and AI engineer with hands-on experience
+     across SQL, Python, Tableau, Power BI, and LLM-powered tooling. I've built production
+     analytics systems, completed simulations at Deloitte and JPMorgan, and I'm the founder
+     of Clavix Technologies Pvt. Ltd. — the parent company behind Aethex, an AI medical SaaS
+     platform, and Cadus, an AI assistant for healthcare professionals. Currently targeting a
+     ₹2 Crore seed round."
+  - Badges: 🎯 Immediate Availability  |  🌐 Remote or On-Site  |  🇮🇳 Samba, J&K, India
+
+RIGHT — Quick stats grid (2x3):
+  * 3+ Projects Shipped
+  * 5+ Certifications
+  * 2 Forage Simulations
+  * 3 Companies Founded
+  * ₹2Cr Seed Round
+  * Immediate Availability
+
+==============================================
+3. SKILLS SECTION
+==============================================
+
+Section label: "// tech stack"
+
+Skills grouped as pill/tag clouds (JetBrains Mono):
+
+  🗄️ Data & Analytics:
+    SQL · Python · Pandas · NumPy · R · Excel (Pivot Tables / Power Query / XLOOKUP) · Tableau · Power BI
+
+  🤖 AI / ML:
+    Scikit-learn · Claude API · Amazon Bedrock · Vertex AI · Azure AI · RAG Pipelines · Prompt Engineering
+
+  🛠️ Engineering:
+    FastAPI · React · Docker · Git/GitHub · REST APIs · Streamlit · PostgreSQL · MySQL
+
+  ☁️ Cloud:
+    AWS · Google Cloud
+
+Pill style: bg rgba(124,58,237,0.15), border purple-dim
+Pill hover: bg purple-core, white text
+Staggered scroll-in animation
+
+==============================================
+4. VENTURES SECTION  ← NEW
+==============================================
+
+Section label: "// ventures & companies"
+Section headline (Syne 700): "Building the Future of AI in India"
+Sub-text (muted): "Founder-led companies at the intersection of AI, healthcare, and enterprise technology."
+
+--- CLAVIX TECHNOLOGIES — FULL WIDTH CARD (prominent, top) ---
+
+Style:
+  - Full-width card
+  - Background: linear-gradient(135deg, #1A1A28 0%, #1C1710 100%)
+  - Border: 1px solid #F59E0B (amber)
+  - Box-shadow: 0 0 40px rgba(245, 158, 11, 0.2)
+  - Top badge: "🏢 Parent Company" in amber pill
+
+Layout: Two columns
+
+  LEFT:
+    - Monogram logo: "CX" — Syne 700, large, amber color, in a dark rounded square
+    - Company name: "Clavix Technologies Pvt. Ltd." — white, Syne 700
+    - Tagline: "The AI Holding Company Behind India's Next Wave"
+    - Description:
+      "Clavix Technologies is the parent company and innovation engine behind Aethex and Cadus.
+       Founded by Rahul Sangral, Clavix is building a portfolio of AI-first products targeting
+       healthcare, productivity, and enterprise intelligence — headquartered in India, built for the world."
+    - Founded badge: "📍 Founded 2025 · Samba, J&K, India"
+    - CTA button: "Visit clavix.in →"
+        href="https://clavix.in" target="_blank"
+        Style: amber filled button (#F59E0B, dark text), hover: amber glow shadow
+
+  RIGHT — Two subsidiary mini-cards stacked:
+
+    Card A — AETHEX:
+      Icon: 🏥
+      Name: "Aethex" (purple, Syne 700)
+      Sub: "AI Medical Platform & Store"
+      Description: "Empowering doctors & medical students with AI-powered clinical tools,
+                    analytics dashboards, a smart medical store, and the Cadus AI assistant."
+      CTA: "aethex.in ↗" — href="https://aethex.in" target="_blank" — purple link
+
+    Card B — CADUS:
+      Icon: 🤖
+      Name: "Cadus" (cyan #06B6D4, Syne 700)
+      Sub: "AI Assistant by Aethex"
+      Description: "Cadus is the intelligent AI assistant inside Aethex — answering clinical
+                    queries, guiding students, and powering smart decisions for healthcare professionals."
+      CTA: "aethex.in ↗" — href="https://aethex.in" target="_blank" — cyan link
+
+    Subsidiary card style: bg #12121A, border purple-dim, hover: lift 4px + glow
+
+--- BELOW CLAVIX: Two equal cards side by side ---
+
+AETHEX DETAIL CARD:
+  Style: purple-bright glow border, badge "🚀 Flagship Product" top-right
+  Header: "Aethex — AI Medical Platform & Store"
+  Founder line: "Founded by Rahul Sangral"
+  Description:
+    "Aethex is an AI-powered SaaS platform built for Indian doctors and medical students.
+     It combines role-based analytics dashboards, a smart medical store, REST API integrations,
+     and Cadus — an embedded AI assistant — into one unified healthcare intelligence platform.
+     Currently raising a ₹2 Crore seed round."
+  Features (purple ✓ checkmarks):
+    ✓ AI-powered clinical analytics dashboards
+    ✓ Smart medical store for doctors & students
+    ✓ Cadus AI assistant — clinical Q&A and guidance
+    ✓ Role-based access for doctors, students, admins
+    ✓ REST API integrations for hospital workflows
+  Tech tags: React · FastAPI · Claude API · Docker · AWS
+  CTA button: "Visit Aethex →" href="https://aethex.in" target="_blank"
+  Style: purple gradient filled button
+
+CADUS DETAIL CARD:
+  Style: cyan accent border (#06B6D4, 0 0 30px rgba(6,182,212,0.2) glow), badge "🤖 AI Assistant"
+  Header: "Cadus — The AI Brain of Aethex"
+  Sub: "Powered by Aethex · aethex.in"
+  Description:
+    "Cadus is the intelligent AI assistant embedded within Aethex. Designed for healthcare
+     professionals and medical students, Cadus answers clinical questions, surfaces relevant
+     medical data, and provides smart guidance — making AI genuinely useful in healthcare."
+  Features (cyan ✓ checkmarks):
+    ✓ Clinical query answering for doctors
+    ✓ Study assistance for medical students
+    ✓ Integrated into Aethex dashboard
+    ✓ Context-aware, role-specific responses
+    ✓ Built on cutting-edge LLM infrastructure
+  CTA button: "Explore Cadus →" href="https://aethex.in" target="_blank"
+  Style: cyan outlined button
+
+==============================================
+5. PROJECTS SECTION
+==============================================
+
+Section label: "// projects"
+3 cards in a responsive grid (3 cols desktop, 1 col mobile)
+
+Card 1 — AI Data Insights Engine:
+  Badge: "Personal Project · 2025–2026"
+  Description: "LLM-powered analytics tool that auto-ingests CSV/Excel datasets and generates
+                business summaries, trend charts, and anomaly alerts — cut manual analysis time by 60%."
+  Tech tags: Claude API · Python · Streamlit · Pandas
+  Stat highlight: "60% faster analysis"
+  CTA: "View Project →" (coming soon style, no link)
+
+Card 2 — KPI Performance Dashboard:
+  Badge: "Personal Project · 2025"
+  Description: "Full BI pipeline pulling live SQL data into Tableau with dynamic filters —
+                reduced ad-hoc reporting requests by ~40% and cut report generation time significantly."
+  Tech tags: SQL · Tableau · Power BI · Python
+  Stat highlight: "40% fewer requests"
+  CTA: "View Project →" (coming soon style)
+
+Card 3 — Aethex Platform:
+  Badge: "Startup · 2025–2026"
+  Description: "Role-based analytics dashboards and REST API integrations for an AI medical
+                platform targeting Indian doctors and students. Seed round: ₹2 Crore ask."
+  Tech tags: React · FastAPI · Claude API · Docker · AWS
+  Stat highlight: "₹2Cr Seed Round"
+  Style: extra purple-bright glow border, "🚀 Active" badge top-right
+  CTA: "Visit Aethex →" href="https://aethex.in" target="_blank"
+
+==============================================
+6. EXPERIENCE SECTION
+==============================================
+
+Section label: "// experience"
+Vertical timeline (left purple gradient line, glowing dots at each entry)
+
+Entry 1:
+  Company: SND Technologies
+  Role: Business Development Executive Intern
+  Location/Type: Remote
+  Dates: Jan 2026 – Feb 2026
+  Bullets:
+    • Automated KPI reporting by building Python data pipelines and Excel dashboards
+      (Pivot Tables, XLOOKUP) — eliminated ~30% of manual reporting effort, saving 10+ hrs/week.
+    • Designed and deployed SQL queries and Tableau dashboards surfacing actionable sales trends —
+      directly informing weekly strategic decisions for cross-functional stakeholders.
+    • Contributed to API integrations and internal workflow automation scripts, reducing
+      repetitive operational tasks and improving overall team turnaround time.
+
+Entry 2:
+  Company: Deloitte Australia
+  Role: Data Analytics & Cyber Simulation
+  Type badge: "Virtual Experience · Forage"
+  Date: 2026
+  Bullets:
+    • Performed end-to-end data cleaning, anomaly detection, and structured reporting
+      in a Big-4 cybersecurity consulting context — mirroring real analyst deliverables.
+
+Entry 3:
+  Company: JPMorgan Chase
+  Role: Investment Banking & Software Engineering Simulation
+  Type badge: "Virtual Experience · Forage"
+  Date: 2026
+  Bullets:
+    • Completed financial data analysis and software engineering tasks replicating
+      live investment-banking workflows, including data modeling and stakeholder reporting.
+
+==============================================
+7. CERTIFICATIONS SECTION
+==============================================
+
+Section label: "// certifications"
+Horizontal scrollable row on mobile, grid on desktop (3 cols)
+
+5 certification cards:
+  1. Google Data Analytics Professional Certificate — Google / Coursera  🟡
+  2. Microsoft AI/ML Engineering Certificate — Microsoft  🔵
+  3. Building with Claude API — Anthropic  🟣
+  4. Claude with Amazon Bedrock — Anthropic  🟣
+  5. Claude with Google Cloud Vertex AI — Anthropic  🟣
+
+Each card: dark bg, issuer name in accent color, cert name in white, emoji icon
+
+==============================================
+8. CONTACT SECTION
+==============================================
+
+Section label: "// let's connect"
+Center-aligned
+
+Headline (Syne 700): "Open to Opportunities"
+Sub-text: "Whether it's a data role, AI project, collaboration, or just a great conversation — reach out."
+
+Contact cards (horizontal row, each clickable):
+  📧 rahul.rishusangral@gmail.com — href="mailto:rahul.rishusangral@gmail.com"
+  📱 +91 9682394363 — href="tel:+919682394363"
+  🔗 linkedin.com/in/rahulsangral — href="https://linkedin.com/in/rahulsangral" target="_blank"
+  🐙 github.com/sangralrahul — href="https://github.com/sangralrahul" target="_blank"
+
+Below cards: "Available immediately — Remote or On-Site 🇮🇳"
+
+==============================================
+9. FOOTER
+==============================================
+
+Left: "© 2026 Rahul Sangral · Clavix Technologies Pvt. Ltd."
+Center links (open in new tab):
+  "aethex.in" → https://aethex.in
+  "clavix.in" → https://clavix.in
+Right: "Built with React · Designed with purpose"
+
+==============================================
+⚙️ TECHNICAL REQUIREMENTS
+==============================================
+
+Framework: React 18 + Vite
+Styling: Tailwind CSS with extended config (custom colors: purple-core, purple-bright, purple-glow, purple-dim, amber, cyan)
+Fonts: Google Fonts via @import in index.css — Syne, DM Sans, JetBrains Mono
+Animations:
+  - Intersection Observer hook (useIntersectionObserver.js) for scroll-triggered fade-in + slide-up on every section
+  - CSS keyframes for hero floating stat cards (gentle translateY loop)
+  - Tailwind transition classes for all hover states
+  - Staggered animation delays on skill pills and cert cards
+Routing: Single page, anchor scroll only (no react-router)
+Mobile: Fully responsive — hamburger nav, stacked layouts on small screens
+No external UI libraries (no shadcn, no MUI) — pure Tailwind + custom CSS
+Performance: Lazy load sections, minimal dependencies
+
+File structure:
+  /src
+    /components
+      Navbar.jsx
+      Hero.jsx
+      About.jsx
+      Skills.jsx
+      Ventures.jsx       ← new
+      Projects.jsx
+      Experience.jsx
+      Certifications.jsx
+      Contact.jsx
+      Footer.jsx
+    /hooks
+      useIntersectionObserver.js
+    App.jsx
+    index.css
+  /public
+    resume.pdf           ← placeholder so download button works
+  index.html
+  vite.config.js
+  tailwind.config.js
+  package.json
+
+==============================================
+🔗 ALL EXTERNAL LINKS (verified)
+==============================================
+
+  clavix.in      → https://clavix.in        (opens new tab)
+  aethex.in      → https://aethex.in        (opens new tab)
+  cadus          → https://aethex.in        (opens new tab)
+  linkedin       → https://linkedin.com/in/rahulsangral  (opens new tab)
+  github         → https://github.com/sangralrahul        (opens new tab)
+  email          → mailto:rahul.rishusangral@gmail.com
+  phone          → tel:+919682394363
+  resume         → /resume.pdf
+
+==============================================
+🚀 DEPLOY CONFIGURATION
+==============================================
+
+package.json scripts:
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
+
+.replit file:
+  run = "npm run dev"
+  [deployment]
+  build = ["npm", "run", "build"]
+  run = ["npx", "serve", "dist"]
+
+==============================================
+✅ FINAL CHECKLIST (Agent must verify before done)
+==============================================
+
+[ ] All 9 sections present with real data — zero lorem ipsum
+[ ] Ventures section has Clavix (amber), Aethex (purple), Cadus (cyan) — all styled distinctly
+[ ] All 3 external URLs (clavix.in, aethex.in x2) open in new tab
+[ ] Mobile responsive — hamburger nav working, all sections stack correctly
+[ ] Tailwind config extended with all custom colors
+[ ] Google Fonts loaded: Syne, DM Sans, JetBrains Mono
+[ ] Intersection Observer scroll animations on all sections
+[ ] Hero floating stat cards animating (CSS keyframe)
+[ ] All contact links functional (mailto, tel, href)
+[ ] vite build completes with zero errors
+[ ] .replit deploy config present
+[ ] public/resume.pdf placeholder exists
