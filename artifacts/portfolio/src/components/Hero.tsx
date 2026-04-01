@@ -50,6 +50,7 @@ export default function Hero() {
               </a>
               <a
                 href="/resume.pdf"
+                download="Rahul_Sangral_Resume.pdf"
                 data-testid="btn-download-resume"
                 className="px-8 py-3 rounded-lg font-['DM_Sans'] font-medium text-[#7C3AED] border border-[#7C3AED] hover:bg-[rgba(124,58,237,0.1)] transition-all"
               >
