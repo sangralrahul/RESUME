@@ -20,13 +20,27 @@ export default function Hero() {
             <div className="inline-block">
               <span className="font-['JetBrains_Mono'] text-[#A855F7] text-sm">&lt;available for work /&gt;</span>
             </div>
+
+            {/* Rahul Sangral Logo / Avatar */}
+            <div className="flex items-center gap-5">
+              <div className="relative flex-shrink-0">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#A855F7] flex items-center justify-center shadow-[0_0_30px_rgba(168,85,247,0.4)]">
+                  <span className="font-['Syne'] font-bold text-2xl text-white tracking-tight">RS</span>
+                </div>
+                <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#22c55e] border-2 border-[#0A0A0F]" title="Available" />
+              </div>
+              <div>
+                <p className="font-['DM_Sans'] text-[#9CA3AF] text-xs uppercase tracking-widest">Rahul Sangral</p>
+                <p className="font-['JetBrains_Mono'] text-[#A855F7] text-xs">@rahulsangral</p>
+              </div>
+            </div>
             
             <h1 className="font-['Syne'] font-bold text-5xl sm:text-6xl md:text-7xl text-white leading-tight">
               Rahul Sangral
             </h1>
             
             <h2 className="font-['Syne'] font-semibold text-xl sm:text-2xl text-[#EDEDED]">
-              Data Analyst · AI Engineer · Builder
+              Data Analyst · AI Developer · Builder
             </h2>
             
             <p className="font-['Syne'] text-[#C084FC] text-lg">

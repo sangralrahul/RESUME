@@ -28,8 +28,8 @@ export default function Ventures() {
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             <div className="lg:col-span-3 flex flex-col space-y-6">
-              <div className="w-20 h-20 bg-[#0A0A0F] border border-[#F59E0B] rounded-2xl flex items-center justify-center">
-                <span className="font-['Syne'] font-bold text-3xl text-[#F59E0B]">CX</span>
+              <div className="w-20 h-20 bg-[#000000] border border-[#F59E0B] rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.15)]">
+                <span className="font-['Syne'] font-bold text-4xl text-white">C</span>
               </div>
               
               <div>
@@ -45,7 +45,7 @@ export default function Ventures() {
               
               <div className="flex items-center gap-4">
                 <span className="bg-[rgba(245,158,11,0.1)] text-[#F59E0B] font-['DM_Sans'] px-3 py-1 rounded-full text-sm">
-                  📍 Founded 2025 · Samba, J&K, India
+                  📍 Founded 2026 · India
                 </span>
               </div>
               
