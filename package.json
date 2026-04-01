@@ -15,5 +15,12 @@
   },
   "dependencies": {
     "pdfkit": "^0.18.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "path-to-regexp@8.3.0": "8.4.0",
+      "picomatch@2.3.1": "2.3.2",
+      "picomatch@4.0.3": "4.0.4"
+    }
   }
 }
