@@ -29,22 +29,22 @@ export default function Navbar() {
           top: 0,
           width: '100%',
           zIndex: 100,
-          transition: 'all 0.3s ease',
-          background: scrolled ? 'rgba(15,15,15,0.95)' : 'transparent',
-          borderBottom: scrolled ? '1px solid #1E1E1E' : '1px solid transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          transition: 'all 0.35s ease',
+          background: scrolled ? 'rgba(10,10,10,0.75)' : 'transparent',
+          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
         }}
       >
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
-            
+
             <a href="#" style={{ textDecoration: 'none' }}>
-              <span style={{ fontFamily: 'Inter', fontWeight: 700, fontSize: '1.1rem', color: '#FAFAFA', letterSpacing: '-0.01em' }}>
-                Rahul Sangral
+              <span style={{ fontFamily: 'Inter', fontWeight: 900, fontSize: '1rem', color: '#FFFFFF', letterSpacing: '-0.02em' }}>
+                RS
               </span>
             </a>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="hidden md:flex">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }} className="hidden md:flex">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -52,19 +52,19 @@ export default function Navbar() {
                   data-testid={`nav-link-${link.name.toLowerCase()}`}
                   style={{
                     padding: '6px 14px',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
+                    borderRadius: '8px',
+                    fontSize: '0.84rem',
                     fontWeight: 500,
-                    color: '#AAA',
+                    color: 'rgba(255,255,255,0.45)',
                     textDecoration: 'none',
                     transition: 'color 0.2s ease, background 0.2s ease',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#FAFAFA';
-                    e.currentTarget.style.background = '#1A1A1A';
+                    e.currentTarget.style.color = '#FFFFFF';
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#AAA';
+                    e.currentTarget.style.color = 'rgba(255,255,255,0.45)';
                     e.currentTarget.style.background = 'transparent';
                   }}
                 >
@@ -77,7 +77,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 className="hidden md:inline-flex btn-blue"
-                style={{ padding: '8px 20px', fontSize: '0.85rem', textDecoration: 'none' }}
+                style={{ padding: '8px 20px', fontSize: '0.84rem', textDecoration: 'none' }}
               >
                 Get in Touch
               </a>
@@ -86,18 +86,17 @@ export default function Navbar() {
                 onClick={() => setOpen(!open)}
                 className="md:hidden"
                 style={{
-                  background: '#1A1A1A',
-                  border: '1px solid #2A2A2A',
-                  color: '#FAFAFA',
-                  width: '36px',
-                  height: '36px',
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  color: '#FFFFFF',
+                  width: '36px', height: '36px',
                   borderRadius: '8px',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.1rem',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1rem',
+                  transition: 'background 0.2s ease',
                 }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.1)'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)'; }}
               >
                 {open ? '✕' : '☰'}
               </button>
@@ -114,13 +113,11 @@ export default function Navbar() {
             inset: 0,
             top: '64px',
             zIndex: 99,
-            background: 'rgba(15,15,15,0.98)',
-            backdropFilter: 'blur(12px)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '24px',
+            background: 'rgba(5,5,5,0.96)',
+            backdropFilter: 'blur(24px)',
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            gap: '28px',
           }}
         >
           {navLinks.map((link) => (
@@ -128,18 +125,15 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setOpen(false)}
-              style={{
-                fontFamily: 'Inter',
-                fontWeight: 600,
-                fontSize: '1.5rem',
-                color: '#FAFAFA',
-                textDecoration: 'none',
-              }}
+              style={{ fontFamily: 'Inter', fontWeight: 700, fontSize: '1.6rem', color: '#FFFFFF', textDecoration: 'none', transition: 'color 0.2s ease' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#60A5FA'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
             >
               {link.name}
             </a>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="btn-blue" style={{ marginTop: '8px', padding: '12px 32px', textDecoration: 'none', fontSize: '1rem' }}>
+          <a href="#contact" onClick={() => setOpen(false)} className="btn-blue"
+            style={{ marginTop: '8px', padding: '13px 40px', textDecoration: 'none', fontSize: '1rem' }}>
             Get in Touch
           </a>
         </div>

@@ -3,20 +3,28 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const categories = [
   {
+    icon: '◈',
     label: 'Data & Analytics',
-    items: ['SQL', 'Python', 'Pandas', 'NumPy', 'Tableau', 'Power BI', 'Excel (Power Query / Pivot Tables)', 'R'],
+    color: '#3B82F6',
+    items: ['SQL', 'Python', 'Pandas', 'NumPy', 'Tableau', 'Power BI', 'Excel', 'R', 'Power Query'],
   },
   {
+    icon: '◉',
     label: 'AI / Machine Learning',
+    color: '#8B5CF6',
     items: ['Claude API', 'RAG Pipelines', 'Prompt Engineering', 'Amazon Bedrock', 'Vertex AI', 'Azure AI', 'Scikit-learn'],
   },
   {
+    icon: '◆',
     label: 'Engineering',
-    items: ['FastAPI', 'React', 'Docker', 'PostgreSQL', 'MySQL', 'REST APIs', 'Streamlit', 'Git / GitHub'],
+    color: '#06B6D4',
+    items: ['FastAPI', 'React', 'Docker', 'PostgreSQL', 'MySQL', 'REST APIs', 'Streamlit', 'Git'],
   },
   {
+    icon: '◇',
     label: 'Cloud & Infrastructure',
-    items: ['AWS (EC2, S3)', 'Google Cloud Platform'],
+    color: '#F59E0B',
+    items: ['AWS EC2', 'AWS S3', 'Google Cloud Platform'],
   },
 ];
 
@@ -25,38 +33,35 @@ export default function Skills() {
   const isVisible = useIntersectionObserver(ref);
 
   return (
-    <section id="skills" ref={ref} style={{ padding: '96px 0' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }} className={`section-enter ${isVisible ? 'is-visible' : ''}`}>
-        
-        <div style={{ marginBottom: '56px' }}>
-          <p className="label-tag" style={{ marginBottom: '12px' }}>Skills</p>
-          <h2 style={{ fontFamily: 'Inter', fontWeight: 700, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#FAFAFA', letterSpacing: '-0.02em', marginBottom: '16px' }}>
-            Tools & Technologies
-          </h2>
-          <p style={{ fontFamily: 'Inter', fontSize: '0.95rem', color: '#666', maxWidth: '520px', lineHeight: 1.7 }}>
-            A full-stack capability set — from raw data to production AI.
-          </p>
-        </div>
+    <section id="skills" ref={ref} style={{ padding: '112px 0' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}
+        className={`section-enter ${isVisible ? 'is-visible' : ''}`}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: '#1E1E1E', borderRadius: '12px', overflow: 'hidden', border: '1px solid #1E1E1E' }} className="skills-grid">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+          <span className="section-num">02</span>
+          <span className="label-tag">Skills</span>
+        </div>
+        <h2 style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', color: '#FFFFFF', letterSpacing: '-0.03em', marginBottom: '56px' }}>
+          Tools &amp; Technologies
+        </h2>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }} className="skills-grid">
           {categories.map((cat, i) => (
-            <div
-              key={cat.label}
-              style={{
-                background: '#0F0F0F',
-                padding: '36px 32px',
-                transition: 'background 0.2s ease',
-              }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#121212'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#0F0F0F'; }}
-            >
-              <div style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: '0.9rem', color: '#FAFAFA', marginBottom: '20px', letterSpacing: '-0.01em' }}>
-                {cat.label}
+            <div key={cat.label} className="card-glass" style={{ padding: '32px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+                <div style={{
+                  width: '36px', height: '36px', borderRadius: '10px',
+                  background: `${cat.color}18`,
+                  border: `1px solid ${cat.color}30`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.85rem', color: cat.color }}>{cat.icon}</span>
+                </div>
+                <span style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: '0.92rem', color: '#FFFFFF' }}>{cat.label}</span>
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {cat.items.map((item) => (
-                  <span key={item} className="tag">{item}</span>
-                ))}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
+                {cat.items.map((item) => <span key={item} className="tag">{item}</span>)}
               </div>
             </div>
           ))}
@@ -64,9 +69,7 @@ export default function Skills() {
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
-          .skills-grid { grid-template-columns: 1fr !important; }
-        }
+        @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </section>
   );

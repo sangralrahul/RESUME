@@ -4,111 +4,110 @@ export default function Hero() {
       id="hero"
       style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '64px' }}
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 24px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 24px', width: '100%' }}>
 
-        <div className="hero-line-1" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px' }}>
-          <div className="pulse-green" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22C55E', flexShrink: 0 }} />
-          <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.75rem', fontWeight: 500, color: '#555', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-            Available for New Opportunities
+        {/* Status pill */}
+        <div className="hero-line-1" style={{ marginBottom: '52px' }}>
+          <span style={{
+            display: 'inline-flex', alignItems: 'center', gap: '10px',
+            background: 'rgba(34,197,94,0.06)',
+            border: '1px solid rgba(34,197,94,0.2)',
+            borderRadius: '99px',
+            padding: '7px 16px 7px 12px',
+          }}>
+            <span className="pulse-green" style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22C55E', display: 'block', flexShrink: 0 }} />
+            <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#4ADE80', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+              Available for New Opportunities
+            </span>
           </span>
         </div>
 
-        <h1
-          className="hero-line-2"
-          style={{
-            fontFamily: 'Inter',
-            fontWeight: 900,
-            fontSize: 'clamp(3.5rem, 8vw, 7.5rem)',
-            lineHeight: 0.95,
-            letterSpacing: '-0.04em',
-            color: '#FAFAFA',
-            marginBottom: '36px',
-          }}
-        >
-          Rahul<br />Sangral
+        {/* Name */}
+        <h1 className="hero-line-2" style={{
+          fontFamily: 'Inter', fontWeight: 900,
+          fontSize: 'clamp(4rem, 9vw, 8.5rem)',
+          lineHeight: 0.92, letterSpacing: '-0.04em',
+          color: '#FFFFFF', marginBottom: '40px',
+        }}>
+          Rahul<br />
+          <span style={{ color: 'rgba(255,255,255,0.35)' }}>Sangral</span>
         </h1>
 
-        <p
-          className="hero-line-3"
-          style={{
-            fontFamily: 'Inter',
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-            fontWeight: 400,
-            color: '#666',
-            lineHeight: 1.65,
-            maxWidth: '540px',
-            marginBottom: '44px',
-          }}
-        >
+        {/* Subtitle */}
+        <p className="hero-line-3" style={{
+          fontFamily: 'Inter', fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
+          fontWeight: 400, color: 'rgba(255,255,255,0.45)',
+          lineHeight: 1.7, maxWidth: '520px', marginBottom: '48px',
+        }}>
           Data Analyst · AI Developer · Founder of{' '}
-          <a
-            href="https://clavix.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-draw"
-            style={{ color: '#3B82F6', fontWeight: 500 }}
-          >
+          <a href="https://clavix.in" target="_blank" rel="noopener noreferrer"
+            className="link-draw" style={{ color: '#60A5FA', fontWeight: 500 }}>
             Clavix Technologies
           </a>
-          . I turn complex data into clear decisions and ship AI products that work.
+          . I turn complex data into clear decisions and ship AI products that work in production.
         </p>
 
+        {/* CTAs */}
         <div className="hero-line-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '88px' }}>
-          <a href="#projects" data-testid="btn-view-work" className="btn-blue" style={{ padding: '13px 30px', fontSize: '0.88rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-            View My Work →
+          <a href="#projects" data-testid="btn-view-work" className="btn-blue"
+            style={{ padding: '13px 32px', fontSize: '0.88rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            View Work <span style={{ opacity: 0.7 }}>→</span>
           </a>
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" data-testid="btn-download-resume" className="btn-ghost" style={{ padding: '13px 30px', fontSize: '0.88rem', textDecoration: 'none' }}>
-            Download Resume
+          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
+            data-testid="btn-download-resume" className="btn-ghost"
+            style={{ padding: '13px 32px', fontSize: '0.88rem', textDecoration: 'none' }}>
+            Resume ↗
           </a>
-          <a href="https://linkedin.com/in/rahulsangral" target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ padding: '13px 30px', fontSize: '0.88rem', textDecoration: 'none' }}>
+          <a href="https://linkedin.com/in/rahulsangral" target="_blank" rel="noopener noreferrer"
+            className="btn-ghost" style={{ padding: '13px 32px', fontSize: '0.88rem', textDecoration: 'none' }}>
             LinkedIn ↗
           </a>
         </div>
 
-        {/* Stats */}
-        <div
-          className="hero-line-5"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '1px',
-            background: '#1A1A1A',
-            borderRadius: '16px',
-            overflow: 'hidden',
-            border: '1px solid #1A1A1A',
-            maxWidth: '860px',
-          }}
-        >
+        {/* Stats — glass grid */}
+        <div className="hero-line-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', maxWidth: '900px' }}>
           {[
-            { value: '60%', label: 'Faster analysis', sub: 'AI Insights Engine' },
-            { value: '₹2Cr', label: 'Seed round', sub: 'Aethex · Clavix' },
-            { value: '10+hrs', label: 'Saved weekly', sub: 'SND Technologies' },
-            { value: '3', label: 'AI companies', sub: 'Clavix · Aethex · Cadus' },
+            { value: '60%', label: 'Faster data analysis', note: 'AI Insights Engine' },
+            { value: '₹2 Cr', label: 'Seed round raising', note: 'Aethex · Clavix' },
+            { value: '10 h+', label: 'Weekly time saved', note: 'SND Technologies' },
+            { value: '3', label: 'AI companies founded', note: 'Clavix · Aethex · Cadus' },
           ].map((s) => (
-            <div
-              key={s.label}
-              className="stat-card"
+            <div key={s.label} className="stat-card"
               style={{
-                background: '#0A0A0A',
-                padding: '24px 20px',
-                transition: 'background 0.25s ease',
+                background: 'rgba(255,255,255,0.025)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                padding: '26px 20px',
+                transition: 'background 0.25s ease, border-color 0.25s ease',
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#101010'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#0A0A0A'; }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.13)';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.025)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)';
+              }}
             >
-              <div style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: '1.5rem', color: '#FAFAFA', letterSpacing: '-0.03em', marginBottom: '5px' }}>
+              <div className="stat-val" style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: '1.7rem', color: '#FFFFFF', letterSpacing: '-0.03em', marginBottom: '6px' }}>
                 {s.value}
               </div>
-              <div style={{ fontFamily: 'Inter', fontSize: '0.78rem', color: '#666', lineHeight: 1.4, marginBottom: '4px' }}>
+              <div style={{ fontFamily: 'Inter', fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', marginBottom: '5px' }}>
                 {s.label}
               </div>
-              <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#383838' }}>
-                {s.sub}
+              <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.6rem', color: 'rgba(255,255,255,0.18)' }}>
+                {s.note}
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .stat-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }
