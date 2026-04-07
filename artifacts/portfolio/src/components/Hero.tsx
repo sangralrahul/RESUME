@@ -1,125 +1,176 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+
+const roles = ['Data Analyst', 'AI Developer', 'Founder', 'Builder'];
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(ref);
+  const [roleIdx, setRoleIdx] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const target = roles[roleIdx];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!deleting && displayed.length < target.length) {
+      timeout = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), 80);
+    } else if (!deleting && displayed.length === target.length) {
+      timeout = setTimeout(() => setDeleting(true), 2200);
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45);
+    } else if (deleting && displayed.length === 0) {
+      setDeleting(false);
+      setRoleIdx((prev) => (prev + 1) % roles.length);
+    }
+    return () => clearTimeout(timeout);
+  }, [displayed, deleting, roleIdx]);
 
   return (
     <section
       id="hero"
       ref={ref}
-      className={`min-h-screen flex items-center pt-20 relative overflow-hidden section-enter ${
-        isVisible ? 'is-visible' : ''
-      }`}
+      className={`min-h-screen flex flex-col justify-center relative overflow-hidden section-enter ${isVisible ? 'is-visible' : ''}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
-          <div className="flex flex-col space-y-7">
-            <div className="inline-block">
-              <span
-                className="font-['JetBrains_Mono'] text-sm px-4 py-2 rounded-full border"
-                style={{
-                  color: '#00D4FF',
-                  borderColor: 'rgba(0,212,255,0.3)',
-                  background: 'rgba(0,212,255,0.06)',
-                }}
-              >
-                &lt;available for work /&gt;
-              </span>
-            </div>
+      {/* Big BG text */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+        style={{ zIndex: 1 }}
+      >
+        <span
+          className="font-['Syne'] font-bold text-[20vw] leading-none tracking-tighter whitespace-nowrap"
+          style={{ color: 'rgba(0,212,255,0.025)', letterSpacing: '-0.05em' }}
+        >
+          RAHUL
+        </span>
+      </div>
 
-            <div>
-              <h1
-                className="font-['Syne'] font-bold text-5xl sm:text-6xl md:text-7xl leading-tight"
-                style={{ color: '#FFFFFF' }}
-              >
-                Rahul{' '}
-                <span className="shimmer-text">Sangral</span>
-              </h1>
-            </div>
-            
-            <h2 className="font-['Syne'] font-semibold text-xl sm:text-2xl" style={{ color: '#EDEDED' }}>
-              Data Analyst · AI Developer · Builder
-            </h2>
-            
-            <p className="font-['DM_Sans'] text-lg" style={{ color: '#00D4FF' }}>
-              Founder — Clavix Technologies · Aethex · Cadus
-            </p>
-            
-            <p className="font-['DM_Sans'] text-base max-w-xl leading-relaxed" style={{ color: '#9CA3AF' }}>
-              I turn messy data into decisions. I build AI tools that actually ship.
-              Founder of Clavix Technologies — building Aethex, an AI medical SaaS platform,
-              and Cadus, an intelligent AI assistant for healthcare professionals.
-            </p>
-            
-            <div className="flex flex-wrap gap-4 pt-2">
-              <a
-                href="#projects"
-                data-testid="btn-view-work"
-                className="btn-primary px-8 py-3 rounded-xl font-['DM_Sans'] font-bold text-[#050508]"
-              >
-                View My Work →
-              </a>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="btn-download-resume"
-                className="btn-outline px-8 py-3 rounded-xl font-['DM_Sans'] font-medium"
-              >
-                Download Resume
-              </a>
-            </div>
-          </div>
-          
-          <div className="hidden lg:flex flex-col space-y-5 items-end justify-center w-full">
-            {[
-              { value: '60% faster', label: 'AI Data Engine', delay: '0s', color: '#00D4FF' },
-              { value: '40% fewer', label: 'Ad-hoc Requests · KPI Dashboard', delay: '0.15s', color: '#10B981' },
-              { value: '10+ hrs/week', label: 'Saved · SND Technologies', delay: '0.3s', color: '#F59E0B' },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                className="w-80 rounded-2xl p-6 border animate-float card-glow"
-                style={{
-                  background: 'rgba(13,13,24,0.8)',
-                  borderColor: 'rgba(0,212,255,0.15)',
-                  animationDelay: stat.delay,
-                  marginRight: i === 1 ? '3rem' : '0',
-                  backdropFilter: 'blur(10px)',
-                }}
-              >
-                <div
-                  className="font-['Syne'] font-bold text-3xl mb-2"
-                  style={{ color: stat.color }}
-                >
-                  {stat.value}
-                </div>
-                <div className="font-['DM_Sans'] text-sm" style={{ color: '#9CA3AF' }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-          
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full" style={{ zIndex: 10 }}>
+
+        {/* Top badge row */}
+        <div className="flex items-center gap-4 mb-10">
+          <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#10B981' }} />
+          <span className="font-['JetBrains_Mono'] text-sm" style={{ color: '#10B981' }}>
+            Available for work
+          </span>
+          <div className="h-px flex-1 max-w-[120px]" style={{ background: 'rgba(0,212,255,0.2)' }} />
+          <span className="font-['JetBrains_Mono'] text-xs" style={{ color: '#6B7280' }}>
+            India · Remote
+          </span>
         </div>
-        
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+
+        {/* Name */}
+        <div className="mb-6">
+          <h1
+            className="font-['Syne'] font-bold leading-[0.9] tracking-tight"
+            style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)', color: '#FFFFFF' }}
+          >
+            Rahul
+            <br />
+            <span className="shimmer-text">Sangral</span>
+          </h1>
+        </div>
+
+        {/* Typed role */}
+        <div className="flex items-center gap-3 mb-8">
+          <div className="w-8 h-px" style={{ background: '#00D4FF' }} />
+          <div className="font-['JetBrains_Mono'] text-xl sm:text-2xl" style={{ color: '#9CA3AF' }}>
+            <span style={{ color: '#00D4FF' }}>{displayed}</span>
+            <span
+              style={{
+                color: '#00D4FF',
+                animation: 'typing-cursor 1s steps(1) infinite',
+                display: 'inline-block',
+              }}
+            >
+              |
+            </span>
+          </div>
+        </div>
+
+        {/* Bio */}
+        <p
+          className="font-['DM_Sans'] text-lg max-w-2xl leading-relaxed mb-12"
+          style={{ color: '#6B7280' }}
+        >
+          I turn messy data into decisions and build AI tools that actually ship.
+          Founder of{' '}
+          <span style={{ color: '#F59E0B' }}>Clavix Technologies</span> — parent company behind{' '}
+          <span style={{ color: '#00D4FF' }}>Aethex</span> and{' '}
+          <span style={{ color: '#10B981' }}>Cadus</span>.
+        </p>
+
+        {/* CTA row */}
+        <div className="flex flex-wrap gap-4 mb-20">
           <a
-            href="#about"
-            data-testid="scroll-arrow"
-            className="flex items-center justify-center w-12 h-12 rounded-full border transition-all animate-bounce"
-            style={{
-              borderColor: 'rgba(0,212,255,0.3)',
-              color: '#00D4FF',
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(0,212,255,0.1)'; }}
+            href="#projects"
+            className="btn-primary px-8 py-4 rounded-2xl font-['DM_Sans'] font-bold text-[#050508] text-base"
+          >
+            View My Work →
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline px-8 py-4 rounded-2xl font-['DM_Sans'] font-medium text-base"
+          >
+            Download Resume
+          </a>
+          <a
+            href="https://aethex.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 rounded-2xl font-['DM_Sans'] font-medium text-base border transition-all"
+            style={{ borderColor: 'rgba(245,158,11,0.4)', color: '#F59E0B' }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(245,158,11,0.08)'; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
           >
-            ↓
+            Visit Aethex
           </a>
+        </div>
+
+        {/* Stats row */}
+        <div
+          className="grid grid-cols-2 sm:grid-cols-4 gap-px border rounded-2xl overflow-hidden"
+          style={{ borderColor: 'rgba(0,212,255,0.12)', background: 'rgba(0,212,255,0.08)' }}
+        >
+          {[
+            { value: '60%', label: 'Faster Analysis', color: '#00D4FF' },
+            { value: '₹2Cr', label: 'Seed Round', color: '#F59E0B' },
+            { value: '3+', label: 'AI Products', color: '#10B981' },
+            { value: '10+', label: 'Hrs/Week Saved', color: '#00D4FF' },
+          ].map((s) => (
+            <div
+              key={s.label}
+              className="flex flex-col items-center justify-center py-6 px-4 text-center"
+              style={{ background: 'rgba(5,5,8,0.9)' }}
+            >
+              <div
+                className="font-['Syne'] font-bold text-2xl sm:text-3xl mb-1"
+                style={{ color: s.color }}
+              >
+                {s.value}
+              </div>
+              <div className="font-['DM_Sans'] text-xs" style={{ color: '#6B7280' }}>
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ zIndex: 10 }}>
+        <span className="font-['JetBrains_Mono'] text-xs" style={{ color: '#6B7280' }}>scroll</span>
+        <div
+          className="w-5 h-8 rounded-full border flex items-start justify-center pt-1.5"
+          style={{ borderColor: 'rgba(0,212,255,0.3)' }}
+        >
+          <div
+            className="w-1 h-2 rounded-full animate-bounce"
+            style={{ background: '#00D4FF' }}
+          />
         </div>
       </div>
     </section>
