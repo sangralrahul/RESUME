@@ -8,6 +8,7 @@ const experiences = [
     role: "Business Development Executive Intern",
     location: "Remote",
     dates: "Jan 2026 – Feb 2026",
+    color: '#00D4FF',
     bullets: [
       "Automated KPI reporting by building Python data pipelines and Excel dashboards (Pivot Tables, XLOOKUP, Power Query) — eliminated ~30% of manual reporting effort, saving 10+ hrs/week.",
       "Designed and deployed SQL queries and Tableau dashboards surfacing actionable sales trends — directly informing weekly strategic decisions for cross-functional stakeholders.",
@@ -20,6 +21,7 @@ const experiences = [
     role: "Data Analytics & Cyber Simulation",
     badge: "Virtual Experience · Forage",
     dates: "2026",
+    color: '#10B981',
     bullets: [
       "Performed end-to-end data cleaning, anomaly detection, and structured reporting in a Big-4 cybersecurity consulting context — mirroring real analyst deliverables."
     ]
@@ -30,6 +32,7 @@ const experiences = [
     role: "Investment Banking & Software Engineering Simulation",
     badge: "Virtual Experience · Forage",
     dates: "2026",
+    color: '#F59E0B',
     bullets: [
       "Completed financial data analysis and software engineering tasks replicating live investment-banking workflows, including data modeling and stakeholder reporting."
     ]
@@ -47,39 +50,79 @@ export default function Experience() {
       className={`py-24 relative section-enter ${isVisible ? 'is-visible' : ''}`}
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="mb-16">
-          <h2 className="font-['JetBrains_Mono'] text-[#A855F7] text-xl">// experience</h2>
+        <div className="mb-14">
+          <p className="font-['JetBrains_Mono'] text-sm mb-3" style={{ color: '#00D4FF' }}>// experience</p>
+          <h2 className="font-['Syne'] font-bold text-4xl sm:text-5xl" style={{ color: '#FFFFFF' }}>
+            Work History
+          </h2>
         </div>
 
-        <div className="relative border-l-2 border-transparent space-y-12 before:absolute before:inset-y-0 before:left-[-1px] before:w-[2px] before:bg-gradient-to-b before:from-[#7C3AED] before:to-[#A855F7]">
+        <div className="relative space-y-10">
+          <div
+            className="absolute left-0 top-0 bottom-0 w-[2px]"
+            style={{
+              background: 'linear-gradient(to bottom, #00D4FF, #10B981, #F59E0B)',
+              marginLeft: '-1px',
+            }}
+          />
+
           {experiences.map((exp) => (
             <div key={exp.id} className="relative pl-8 md:pl-12">
-              {/* Glowing dot */}
-              <div className="absolute w-3 h-3 bg-[#A855F7] rounded-full left-[-7px] top-2 shadow-[0_0_12px_rgba(168,85,247,0.6)]"></div>
+              <div
+                className="absolute w-3 h-3 rounded-full"
+                style={{
+                  background: exp.color,
+                  left: '-6px',
+                  top: '10px',
+                  boxShadow: `0 0 10px ${exp.color}80`,
+                }}
+              />
               
-              <div className="bg-[#1A1A28] border border-[rgba(124,58,237,0.25)] p-6 rounded-2xl hover:border-[#A855F7] transition-colors">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
+              <div
+                className="border rounded-2xl p-6 card-glow"
+                style={{
+                  background: 'rgba(13,13,24,0.85)',
+                  borderColor: 'rgba(0,212,255,0.12)',
+                  backdropFilter: 'blur(10px)',
+                }}
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-5">
                   <div>
-                    <h3 className="font-['Syne'] font-bold text-2xl text-white">{exp.company}</h3>
-                    <p className="font-['Syne'] font-semibold text-[#A855F7] text-lg">{exp.role}</p>
+                    <h3 className="font-['Syne'] font-bold text-2xl" style={{ color: '#FFFFFF' }}>
+                      {exp.company}
+                    </h3>
+                    <p className="font-['Syne'] font-semibold text-lg mt-0.5" style={{ color: exp.color }}>
+                      {exp.role}
+                    </p>
                   </div>
-                  <div className="mt-2 sm:mt-0 text-right">
-                    <span className="block font-['DM_Sans'] text-[#9CA3AF] text-sm whitespace-nowrap">{exp.dates}</span>
+                  <div className="mt-3 sm:mt-0 text-right flex flex-col items-end gap-1">
+                    <span className="font-['DM_Sans'] text-sm whitespace-nowrap" style={{ color: '#6B7280' }}>
+                      {exp.dates}
+                    </span>
                     {exp.location && (
-                      <span className="block font-['DM_Sans'] text-[#9CA3AF] text-sm whitespace-nowrap">{exp.location}</span>
+                      <span className="font-['DM_Sans'] text-sm" style={{ color: '#6B7280' }}>
+                        {exp.location}
+                      </span>
                     )}
                     {exp.badge && (
-                      <span className="inline-block mt-1 bg-[rgba(124,58,237,0.15)] text-[#C084FC] text-xs px-2 py-1 rounded">
+                      <span
+                        className="inline-block text-xs px-3 py-1 rounded-full"
+                        style={{
+                          background: `${exp.color}15`,
+                          color: exp.color,
+                          border: `1px solid ${exp.color}30`,
+                        }}
+                      >
                         {exp.badge}
                       </span>
                     )}
                   </div>
                 </div>
                 
-                <ul className="space-y-3 font-['DM_Sans'] text-[#EDEDED] text-sm md:text-base leading-relaxed">
+                <ul className="space-y-3 font-['DM_Sans'] text-sm md:text-base leading-relaxed" style={{ color: '#9CA3AF' }}>
                   {exp.bullets.map((bullet, idx) => (
-                    <li key={idx} className="flex">
-                      <span className="mr-2 mt-1 text-[#A855F7] text-xs">●</span>
+                    <li key={idx} className="flex gap-2">
+                      <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.color }} />
                       <span>{bullet}</span>
                     </li>
                   ))}

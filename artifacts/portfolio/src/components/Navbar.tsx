@@ -25,16 +25,26 @@ export default function Navbar() {
   return (
     <nav
       data-testid="navbar"
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? 'backdrop-blur-md bg-[#0A0A0F]/80 border-b border-[rgba(124,58,237,0.25)]'
+          ? 'backdrop-blur-xl border-b'
           : 'bg-transparent'
       }`}
+      style={scrolled ? {
+        background: 'rgba(5, 5, 8, 0.85)',
+        borderBottomColor: 'rgba(0, 212, 255, 0.15)',
+      } : {}}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center">
-            <a href="#" className="font-['Syne'] font-bold text-xl text-white tracking-[0.25em]">r a h u l</a>
+            <a
+              href="#"
+              className="font-['Syne'] font-bold text-xl tracking-[0.25em]"
+              style={{ color: '#00D4FF' }}
+            >
+              r a h u l
+            </a>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -43,7 +53,10 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 data-testid={`nav-link-${link.name.toLowerCase()}`}
-                className="text-[#EDEDED] hover:text-[#A855F7] transition-colors font-['DM_Sans'] text-sm"
+                className="font-['DM_Sans'] text-sm transition-all duration-200 hover:scale-105"
+                style={{ color: '#EDEDED' }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#00D4FF'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#EDEDED'; }}
               >
                 {link.name}
               </a>
@@ -54,23 +67,29 @@ export default function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               data-testid="hamburger-menu"
-              className="text-[#EDEDED] hover:text-[#A855F7] focus:outline-none text-2xl"
+              className="text-2xl focus:outline-none transition-colors"
+              style={{ color: '#00D4FF' }}
             >
-              ☰
+              {mobileMenuOpen ? '✕' : '☰'}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-20 bg-[#0A0A0F] z-40 flex flex-col items-center pt-10 space-y-8 h-screen border-t border-[rgba(124,58,237,0.25)]">
+        <div
+          className="md:hidden fixed inset-0 top-20 z-40 flex flex-col items-center pt-10 space-y-8 h-screen border-t backdrop-blur-xl"
+          style={{ background: 'rgba(5,5,8,0.97)', borderTopColor: 'rgba(0,212,255,0.15)' }}
+        >
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-[#EDEDED] hover:text-[#A855F7] transition-colors font-['Syne'] text-2xl"
+              className="font-['Syne'] text-2xl transition-colors"
+              style={{ color: '#EDEDED' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#00D4FF'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#EDEDED'; }}
             >
               {link.name}
             </a>
