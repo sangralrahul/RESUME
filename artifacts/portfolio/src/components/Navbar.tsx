@@ -39,7 +39,7 @@ export default function Navbar() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
 
             <a href="#" style={{ textDecoration: 'none' }}>
-              <span style={{ fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: '1rem', color: '#FFFFFF', letterSpacing: '0.18em' }}>
+              <span style={{ fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: '1rem', color: '#FFFFFF', letterSpacing: '0.18em', display: 'inline-block', transform: 'skewX(-10deg)' }}>
                 RAHUL
               </span>
             </a>
