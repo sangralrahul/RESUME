@@ -1,18 +1,21 @@
 import { useEffect, useRef } from 'react';
 
-interface Particle {
+interface Dot {
   x: number;
   y: number;
+  ox: number;
+  oy: number;
   vx: number;
   vy: number;
-  radius: number;
+  size: number;
   opacity: number;
-  pulse: number;
-  pulseSpeed: number;
 }
 
 export default function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouse = useRef({ x: -2000, y: -2000 });
+  const frameRef = useRef<number>(0);
+  const dotsRef = useRef<Dot[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -20,99 +23,123 @@ export default function AnimatedBackground() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animFrameId: number;
-    const particles: Particle[] = [];
-    const PARTICLE_COUNT = 90;
-    const CONNECTION_DISTANCE = 140;
-
     const resize = () => {
       canvas.width = window.innerWidth;
-      canvas.height = document.body.scrollHeight;
+      canvas.height = window.innerHeight;
+      init();
     };
 
-    const createParticles = () => {
-      particles.length = 0;
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          radius: Math.random() * 1.8 + 0.4,
-          opacity: Math.random() * 0.55 + 0.15,
-          pulse: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.01 + Math.random() * 0.02,
-        });
+    const init = () => {
+      const cols = Math.ceil(canvas.width / 60);
+      const rows = Math.ceil(canvas.height / 60);
+      dotsRef.current = [];
+      for (let i = 0; i <= cols; i++) {
+        for (let j = 0; j <= rows; j++) {
+          const ox = (i / cols) * canvas.width;
+          const oy = (j / rows) * canvas.height;
+          dotsRef.current.push({
+            x: ox + (Math.random() - 0.5) * 20,
+            y: oy + (Math.random() - 0.5) * 20,
+            ox,
+            oy,
+            vx: 0,
+            vy: 0,
+            size: Math.random() * 1.2 + 0.4,
+            opacity: Math.random() * 0.25 + 0.05,
+          });
+        }
       }
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const dots = dotsRef.current;
+      const mx = mouse.current.x;
+      const my = mouse.current.y;
 
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.pulse += p.pulseSpeed;
+      for (const dot of dots) {
+        const dx = dot.x - mx;
+        const dy = dot.y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const influence = 150;
 
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+        if (dist < influence) {
+          const f = (1 - dist / influence) * 2.5;
+          dot.vx += (dx / dist) * f;
+          dot.vy += (dy / dist) * f;
+        }
 
-        const pulsedOpacity = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
-        const pulsedRadius = p.radius * (0.85 + 0.15 * Math.sin(p.pulse));
+        // Spring back to origin
+        dot.vx += (dot.ox - dot.x) * 0.04;
+        dot.vy += (dot.oy - dot.y) * 0.04;
+        dot.vx *= 0.82;
+        dot.vy *= 0.82;
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+
+        const brightBoost = dist < 200 ? (1 - dist / 200) * 0.7 : 0;
+        const alpha = Math.min(1, dot.opacity + brightBoost);
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, pulsedRadius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 212, 255, ${pulsedOpacity})`;
-        ctx.shadowColor = '#00D4FF';
-        ctx.shadowBlur = 6;
+        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
         ctx.fill();
-        ctx.shadowBlur = 0;
+      }
 
-        for (let j = i + 1; j < particles.length; j++) {
-          const other = particles[j];
-          const dx = p.x - other.x;
-          const dy = p.y - other.y;
+      // Draw lines between close dots
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONNECTION_DISTANCE) {
-            const alpha = (1 - dist / CONNECTION_DISTANCE) * 0.12;
+          if (dist < 80) {
+            const alpha = (1 - dist / 80) * 0.06;
             ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
-            ctx.lineWidth = 0.6;
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
-      });
+      }
 
-      animFrameId = requestAnimationFrame(draw);
+      frameRef.current = requestAnimationFrame(draw);
     };
 
+    const onMouseMove = (e: MouseEvent) => {
+      mouse.current = { x: e.clientX, y: e.clientY };
+    };
+    const onMouseLeave = () => {
+      mouse.current = { x: -2000, y: -2000 };
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseleave', onMouseLeave);
+    window.addEventListener('resize', resize);
     resize();
-    createParticles();
     draw();
 
-    const resizeObserver = new ResizeObserver(() => {
-      resize();
-      createParticles();
-    });
-    resizeObserver.observe(document.body);
-    window.addEventListener('resize', () => { resize(); createParticles(); });
-
     return () => {
-      cancelAnimationFrame(animFrameId);
-      resizeObserver.disconnect();
-      window.removeEventListener('resize', () => { resize(); createParticles(); });
+      cancelAnimationFrame(frameRef.current);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseleave', onMouseLeave);
+      window.removeEventListener('resize', resize);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0, opacity: 0.55 }}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }}
     />
   );
 }
