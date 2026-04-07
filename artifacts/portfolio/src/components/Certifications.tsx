@@ -7,54 +7,48 @@ import type { IconType } from 'react-icons';
 interface Cert {
   name: string;
   issuer: string;
-  color: string;
-  icons: { Icon: IconType; color: string }[];
   year: string;
+  icons: { Icon: IconType; color: string }[];
 }
 
 const certs: Cert[] = [
   {
-    name: "Google Data Analytics Professional Certificate",
-    issuer: "Google / Coursera",
-    color: "#F59E0B",
-    year: "2025",
+    name: 'Google Data Analytics Professional Certificate',
+    issuer: 'Google / Coursera',
+    year: '2025',
     icons: [
-      { Icon: SiGoogle, color: "#4285F4" },
-      { Icon: SiCoursera, color: "#0056D2" },
+      { Icon: SiGoogle, color: '#4285F4' },
+      { Icon: SiCoursera, color: '#0056D2' },
     ],
   },
   {
-    name: "Microsoft AI/ML Engineering Certificate",
-    issuer: "Microsoft",
-    color: "#00D4FF",
-    year: "2025",
-    icons: [{ Icon: FaMicrosoft, color: "#00A4EF" }],
+    name: 'Microsoft AI/ML Engineering Certificate',
+    issuer: 'Microsoft',
+    year: '2025',
+    icons: [{ Icon: FaMicrosoft, color: '#00A4EF' }],
   },
   {
-    name: "Building with Claude API",
-    issuer: "Anthropic",
-    color: "#10B981",
-    year: "2026",
-    icons: [{ Icon: SiAnthropic, color: "#D4A27F" }],
+    name: 'Building with Claude API',
+    issuer: 'Anthropic',
+    year: '2026',
+    icons: [{ Icon: SiAnthropic, color: '#D4A27F' }],
   },
   {
-    name: "Claude with Amazon Bedrock",
-    issuer: "Anthropic × AWS",
-    color: "#10B981",
-    year: "2026",
+    name: 'Claude with Amazon Bedrock',
+    issuer: 'Anthropic × AWS',
+    year: '2026',
     icons: [
-      { Icon: SiAnthropic, color: "#D4A27F" },
-      { Icon: FaAws, color: "#FF9900" },
+      { Icon: SiAnthropic, color: '#D4A27F' },
+      { Icon: FaAws, color: '#FF9900' },
     ],
   },
   {
-    name: "Claude with Google Cloud Vertex AI",
-    issuer: "Anthropic × Google Cloud",
-    color: "#00D4FF",
-    year: "2026",
+    name: 'Claude with Google Cloud Vertex AI',
+    issuer: 'Anthropic × Google Cloud',
+    year: '2026',
     icons: [
-      { Icon: SiAnthropic, color: "#D4A27F" },
-      { Icon: SiGooglecloud, color: "#4285F4" },
+      { Icon: SiAnthropic, color: '#D4A27F' },
+      { Icon: SiGooglecloud, color: '#4285F4' },
     ],
   },
 ];
@@ -64,116 +58,82 @@ export default function Certifications() {
   const isVisible = useIntersectionObserver(ref);
 
   return (
-    <section
-      id="certifications"
-      ref={ref}
-      className={`py-28 relative section-enter ${isVisible ? 'is-visible' : ''}`}
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <section id="certifications" ref={ref} style={{ padding: '96px 0' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }} className={`section-enter ${isVisible ? 'is-visible' : ''}`}>
 
-        <div className="flex items-center gap-4 mb-16">
-          <span className="font-['JetBrains_Mono'] text-xs tracking-widest uppercase" style={{ color: '#6B7280' }}>
-            06 — Certifications
-          </span>
-          <div className="flex-1 h-px" style={{ background: 'rgba(0,212,255,0.1)' }} />
-        </div>
-
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
-          <h2
-            className="font-['Syne'] font-bold text-4xl sm:text-5xl leading-tight"
-            style={{ color: '#FFFFFF' }}
-          >
-            Verified
-            <br />
-            <span className="gradient-text">Credentials</span>
-          </h2>
-          <div
-            className="flex items-center gap-3 px-5 py-3 rounded-2xl border self-start sm:self-auto"
-            style={{ background: 'rgba(16,185,129,0.08)', borderColor: 'rgba(16,185,129,0.25)' }}
-          >
-            <div className="w-2 h-2 rounded-full" style={{ background: '#10B981' }} />
-            <span className="font-['JetBrains_Mono'] text-sm" style={{ color: '#10B981' }}>
-              {certs.length} Certifications Earned
-            </span>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '56px', flexWrap: 'wrap', gap: '16px' }}>
+          <div>
+            <p className="label-tag" style={{ marginBottom: '12px' }}>Certifications</p>
+            <h2 style={{ fontFamily: 'Inter', fontWeight: 700, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#FAFAFA', letterSpacing: '-0.02em' }}>
+              Verified Credentials
+            </h2>
           </div>
+          <span style={{ fontFamily: 'Inter', fontSize: '0.82rem', color: '#555' }}>
+            {certs.length} certifications earned
+          </span>
         </div>
 
-        {/* Cert grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: '#1E1E1E', borderRadius: '12px', overflow: 'hidden', border: '1px solid #1E1E1E' }} className="cert-grid">
           {certs.map((cert, idx) => (
             <div
               key={idx}
-              className="rounded-3xl p-6 flex flex-col border transition-all hover:-translate-y-1.5 group"
               style={{
-                background: 'rgba(13,13,24,0.88)',
-                borderColor: 'rgba(0,212,255,0.1)',
-                backdropFilter: 'blur(12px)',
+                background: '#0F0F0F',
+                padding: '28px 26px',
+                transition: 'background 0.2s ease',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
               }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = `${cert.color}45`;
-                el.style.boxShadow = `0 0 30px ${cert.color}15, 0 12px 30px rgba(0,0,0,0.4)`;
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = 'rgba(0,212,255,0.1)';
-                el.style.boxShadow = 'none';
-              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#121212'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#0F0F0F'; }}
             >
-              {/* Top row: icons + year */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-2">
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', gap: '8px' }}>
                   {cert.icons.map(({ Icon, color }, i) => (
                     <div
                       key={i}
-                      className="w-10 h-10 rounded-xl flex items-center justify-center"
                       style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '6px',
                         background: `${color}15`,
-                        border: `1px solid ${color}30`,
+                        border: `1px solid ${color}25`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                     >
-                      <Icon style={{ color, fontSize: '1.1rem' }} />
+                      <Icon style={{ color, fontSize: '0.9rem' }} />
                     </div>
                   ))}
                 </div>
-                <span
-                  className="font-['JetBrains_Mono'] text-xs px-3 py-1 rounded-full"
-                  style={{
-                    background: `${cert.color}10`,
-                    color: cert.color,
-                    border: `1px solid ${cert.color}25`,
-                  }}
-                >
+                <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.7rem', color: '#444' }}>
                   {cert.year}
                 </span>
               </div>
 
-              {/* Issuer badge */}
-              <div className="mb-3">
-                <span
-                  className="font-['DM_Sans'] text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider"
-                  style={{ color: cert.color, background: `${cert.color}12` }}
-                >
+              <div>
+                <div style={{ fontFamily: 'Inter', fontSize: '0.7rem', fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
                   {cert.issuer}
-                </span>
+                </div>
+                <div style={{ fontFamily: 'Inter', fontWeight: 500, fontSize: '0.88rem', color: '#FAFAFA', lineHeight: 1.5 }}>
+                  {cert.name}
+                </div>
               </div>
-
-              <h3
-                className="font-['Syne'] font-semibold text-lg leading-snug flex-grow"
-                style={{ color: '#FFFFFF' }}
-              >
-                {cert.name}
-              </h3>
-
-              {/* Bottom accent line */}
-              <div
-                className="mt-5 h-0.5 rounded-full w-0 group-hover:w-full transition-all duration-500"
-                style={{ background: `linear-gradient(90deg, ${cert.color}, transparent)` }}
-              />
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .cert-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .cert-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }
