@@ -17,7 +17,7 @@ export default function Hero() {
           }}>
             <span className="pulse-green" style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22C55E', display: 'block', flexShrink: 0 }} />
             <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#4ADE80', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              Available for New Opportunities
+              Available Immediately · U.S. Time Zone
             </span>
           </span>
         </div>
@@ -37,14 +37,14 @@ export default function Hero() {
         <p className="hero-line-3" style={{
           fontFamily: 'Inter', fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
           fontWeight: 400, color: 'rgba(255,255,255,0.45)',
-          lineHeight: 1.7, maxWidth: '520px', marginBottom: '48px',
+          lineHeight: 1.7, maxWidth: '560px', marginBottom: '48px',
         }}>
-          Data Analyst · AI Developer · Founder of{' '}
-          <a href="https://clavix.in" target="_blank" rel="noopener noreferrer"
+          AI/ML Engineer · Data Analyst · Full-Stack Developer · Founder of{' '}
+          <a href="https://aethex.in" target="_blank" rel="noopener noreferrer"
             className="link-draw" style={{ color: '#60A5FA', fontWeight: 500 }}>
-            Clavix Technologies
+            Aethex
           </a>
-          . I turn complex data into clear decisions and ship AI products that work in production.
+          . I build ML pipelines, RAG systems, and AI products that work in production.
         </p>
 
         {/* CTAs */}
@@ -67,10 +67,10 @@ export default function Hero() {
         {/* Stats — glass grid */}
         <div className="hero-line-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', maxWidth: '900px' }}>
           {[
+            { value: '200+', label: 'Registered users', note: 'Aethex SaaS' },
             { value: '60%', label: 'Faster data analysis', note: 'AI Insights Engine' },
-            { value: '₹2 Cr', label: 'Seed round raising', note: 'Aethex · Clavix' },
             { value: '10 h+', label: 'Weekly time saved', note: 'SND Technologies' },
-            { value: '3', label: 'AI companies founded', note: 'Clavix · Aethex · Cadus' },
+            { value: '2+', label: 'Years experience', note: 'AI/ML · Full-Stack' },
           ].map((s) => (
             <div key={s.label} className="stat-card"
               style={{

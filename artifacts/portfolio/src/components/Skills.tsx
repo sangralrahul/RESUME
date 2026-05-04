@@ -6,25 +6,25 @@ const categories = [
     icon: '◈',
     label: 'Data & Analytics',
     color: '#3B82F6',
-    items: ['SQL', 'Python', 'Pandas', 'NumPy', 'Tableau', 'Power BI', 'Excel', 'R', 'Power Query'],
+    items: ['Python', 'SQL', 'Pandas', 'NumPy', 'Scikit-learn', 'Tableau', 'Power BI', 'Excel', 'Streamlit', 'Matplotlib'],
   },
   {
     icon: '◉',
-    label: 'AI / Machine Learning',
+    label: 'AI / ML & LLMs',
     color: '#8B5CF6',
-    items: ['Claude API', 'RAG Pipelines', 'Prompt Engineering', 'Amazon Bedrock', 'Vertex AI', 'Azure AI', 'Scikit-learn'],
+    items: ['Machine Learning', 'Deep Learning', 'NLP', 'RAG Pipelines', 'Prompt Engineering', 'Claude API', 'Amazon Bedrock', 'Vertex AI'],
   },
   {
     icon: '◆',
-    label: 'Engineering',
+    label: 'Web & Engineering',
     color: '#06B6D4',
-    items: ['FastAPI', 'React', 'Docker', 'PostgreSQL', 'MySQL', 'REST APIs', 'Streamlit', 'Git'],
+    items: ['React', 'FastAPI', 'REST APIs', 'Firebase', 'PostgreSQL', 'MySQL', 'Docker', 'Git', 'GitHub'],
   },
   {
     icon: '◇',
-    label: 'Cloud & Infrastructure',
+    label: 'Cloud & DevOps',
     color: '#F59E0B',
-    items: ['AWS EC2', 'AWS S3', 'Google Cloud Platform'],
+    items: ['AWS', 'Google Cloud Platform', 'Microsoft Azure', 'Azure AI Services', 'ETL Pipelines', 'Data Modeling'],
   },
 ];
 
@@ -46,7 +46,7 @@ export default function Skills() {
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }} className="skills-grid">
-          {categories.map((cat, i) => (
+          {categories.map((cat) => (
             <div key={cat.label} className="card-glass" style={{ padding: '32px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                 <div style={{

@@ -8,6 +8,7 @@ interface Cert {
   name: string;
   issuer: string;
   year: string;
+  detail?: string;
   icons: { Icon: IconType; color: string }[];
 }
 
@@ -16,18 +17,21 @@ const certs: Cert[] = [
     name: 'Google Data Analytics Professional Certificate',
     issuer: 'Google / Coursera',
     year: '2025',
+    detail: 'Data cleaning, SQL querying, Tableau, spreadsheet analysis, and dashboard-driven business decision making.',
     icons: [{ Icon: SiGoogle, color: '#4285F4' }, { Icon: SiCoursera, color: '#0056D2' }],
   },
   {
     name: 'Microsoft AI/ML Engineering Certificate',
     issuer: 'Microsoft',
     year: '2025',
+    detail: 'ML pipelines, Azure AI services, model deployment, and responsible AI development practices.',
     icons: [{ Icon: FaMicrosoft, color: '#00A4EF' }],
   },
   {
-    name: 'Building with Claude API',
+    name: 'Claude API / LLM Integration',
     issuer: 'Anthropic',
     year: '2026',
+    detail: 'LLM integration, prompt engineering, RAG pipeline design, and deploying AI models on cloud infrastructure.',
     icons: [{ Icon: SiAnthropic, color: '#D4A27F' }],
   },
   {
@@ -41,6 +45,13 @@ const certs: Cert[] = [
     issuer: 'Anthropic × Google Cloud',
     year: '2026',
     icons: [{ Icon: SiAnthropic, color: '#D4A27F' }, { Icon: SiGooglecloud, color: '#4285F4' }],
+  },
+  {
+    name: 'Investment Banking & Data Analytics Simulations',
+    issuer: 'JPMorgan Chase & Deloitte (Forage)',
+    year: '2026',
+    detail: 'Financial data modeling, cybersecurity reporting, and structured stakeholder deliverables in Big-4 context.',
+    icons: [{ Icon: FaMicrosoft, color: '#6366F1' }],
   },
 ];
 
@@ -89,9 +100,14 @@ export default function Certifications() {
                 <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.65rem', color: 'rgba(255,255,255,0.28)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>
                   {cert.issuer}
                 </div>
-                <div style={{ fontFamily: 'Inter', fontWeight: 500, fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.5 }}>
+                <div style={{ fontFamily: 'Inter', fontWeight: 500, fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.5, marginBottom: cert.detail ? '10px' : '0' }}>
                   {cert.name}
                 </div>
+                {cert.detail && (
+                  <div style={{ fontFamily: 'Inter', fontSize: '0.78rem', color: 'rgba(255,255,255,0.3)', lineHeight: 1.6 }}>
+                    {cert.detail}
+                  </div>
+                )}
               </div>
             </div>
           ))}

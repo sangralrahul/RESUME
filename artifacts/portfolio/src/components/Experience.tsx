@@ -3,15 +3,36 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const experiences = [
   {
+    company: 'Aethex (aethex.in)',
+    role: 'Founder — AI SaaS Platform',
+    period: '2025 – Present',
+    type: 'Founder · Remote',
+    accentColor: '#22C55E',
+    bullets: [
+      'Founded and scaled a live AI-powered medical SaaS platform (React + FastAPI) serving 200+ registered users — Cadus AI clinical assistant, drug reference database, NEET-PG MCQ engine, and CME hub.',
+      'Integrated Razorpay payments, Firebase auth, Brevo email, and GA4 analytics; owned all ETL pipelines, DNS infrastructure, cloud deployment, and product roadmap end-to-end.',
+    ],
+  },
+  {
+    company: 'Freelance AI/ML Developer',
+    role: 'Independent Consultant',
+    period: '2023 – Present',
+    type: 'Freelance · Remote',
+    accentColor: '#3B82F6',
+    bullets: [
+      'Designed and delivered custom AI/ML solutions, data pipelines, and full-stack applications for clients across healthcare, finance, and business analytics domains.',
+      'Built NLP models, RAG pipelines, and LLM-integrated tools using Python, FastAPI, and cloud platforms; developed BI dashboards and SQL reporting systems for data-driven decision making.',
+    ],
+  },
+  {
     company: 'SND Technologies',
     role: 'Business Development Executive Intern',
     period: 'Jan 2026 – Feb 2026',
     type: 'Industry · Remote',
-    accentColor: '#3B82F6',
+    accentColor: '#F59E0B',
     bullets: [
-      'Automated KPI reporting with Python pipelines and Excel dashboards — eliminated ~30% manual effort, saving 10+ hrs/week.',
-      'Designed SQL queries and Tableau dashboards surfacing sales trends — directly informing weekly strategic decisions.',
-      'Contributed to API integrations and internal workflow automation scripts.',
+      'Engineered automated Python ETL data pipelines for KPI extraction and reporting, eliminating ~30% of manual effort and saving 10+ hours per week.',
+      'Designed SQL queries and Tableau dashboards surfacing actionable sales trends; built Excel workbooks using Pivot Tables, XLOOKUP, and Power Query for real-time performance tracking.',
     ],
   },
   {
@@ -29,9 +50,9 @@ const experiences = [
     role: 'Investment Banking & Software Engineering Simulation',
     period: '2026',
     type: 'Virtual Experience · Forage',
-    accentColor: '#F59E0B',
+    accentColor: '#8B5CF6',
     bullets: [
-      'Completed financial data analysis and software engineering tasks replicating live investment-banking workflows, including data modeling and stakeholder reporting.',
+      'Completed financial data modeling and software engineering tasks replicating live investment-banking workflows, including structured stakeholder deliverables.',
     ],
   },
 ];
