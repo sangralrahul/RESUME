@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AnimatedBackground from "@/components/AnimatedBackground";
-import MouseSpotlight from "@/components/MouseSpotlight";
 import AuroraBlobs from "@/components/AuroraBlobs";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -23,7 +22,6 @@ function App() {
       <div style={{ background: '#0C0C17', color: '#D4D4D4', minHeight: '100vh', fontFamily: 'Inter, sans-serif', cursor: 'none', position: 'relative' }}>
         <AuroraBlobs />
         <AnimatedBackground />
-        <MouseSpotlight />
         <CustomCursor />
         <ScrollProgress />
 
