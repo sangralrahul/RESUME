@@ -73,7 +73,9 @@ function CodeLine({ line, num }: { line: Line; num: number }) {
         <span style={{ color: key, display: 'inline-block', minWidth: '104px' }}>{line.key}</span>
         <span style={{ color: 'rgba(212,212,212,0.28)', margin: '0 8px' }}>→</span>
         <span style={{ color: line.green ? grn : val }}>{line.value}</span>
-        {line.green && <span style={{ color: grn, marginLeft: 5, animation: 'pulse-green 2.4s ease infinite' }}>●</span>}
+        {line.green && (
+          <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: grn, boxShadow: '0 0 6px rgba(78,201,176,0.8)', marginLeft: '8px', verticalAlign: 'middle' }} />
+        )}
       </span>
     </div>
   );
@@ -81,10 +83,10 @@ function CodeLine({ line, num }: { line: Line; num: number }) {
 }
 
 const stats = [
-  { value: '200+', label: 'Platform Users',  note: '# Aethex',   color: '#4EC9B0' },
-  { value: '60%',  label: 'Faster Analysis', note: '# AI Engine', color: '#569CD6' },
-  { value: '10h+', label: 'Saved Weekly',    note: '# SND Tech',  color: '#CE9178' },
-  { value: '2+',   label: 'Years Building',  note: '# AI / ML',   color: '#DCDCAA' },
+  { value: '200+', label: 'Platform Users',  sub: '# Aethex' },
+  { value: '60%',  label: 'Faster Analysis', sub: '# AI Engine' },
+  { value: '10h+', label: 'Saved Weekly',    sub: '# SND Tech' },
+  { value: '2+',   label: 'Years Building',  sub: '# AI / ML' },
 ];
 
 export default function Hero() {
@@ -92,70 +94,52 @@ export default function Hero() {
   const lines = tab === 'py' ? pyLines : tsLines;
 
   return (
-    <section id="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '68px', position: 'relative', overflow: 'hidden' }}>
-      <div className="glow-orb-1" />
-      <div className="glow-orb-2" />
-
+    <section id="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '64px', position: 'relative', overflow: 'hidden' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 28px', width: '100%' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 440px', gap: '56px', alignItems: 'center' }} className="hero-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 440px', gap: '60px', alignItems: 'center' }} className="hero-grid">
 
           {/* ── Left ── */}
           <div>
-            <div className="hero-line-1" style={{ marginBottom: '40px' }}>
+            {/* Status badge */}
+            <div className="hero-line-1" style={{ marginBottom: '44px' }}>
               <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: '10px',
-                background: 'rgba(78,201,176,0.06)',
-                border: '1px solid rgba(78,201,176,0.2)',
-                borderRadius: '7px', padding: '7px 16px 7px 12px',
-                fontFamily: 'JetBrains Mono', fontSize: '0.7rem',
+                display: 'inline-flex', alignItems: 'center', gap: '9px',
+                background: 'rgba(78,201,176,0.05)',
+                border: '1px solid rgba(78,201,176,0.18)',
+                borderRadius: '6px', padding: '7px 16px',
+                fontFamily: 'JetBrains Mono', fontSize: '0.68rem',
               }}>
                 <span className="pulse-green" style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4EC9B0', display: 'block', flexShrink: 0 }} />
-                <span style={{ color: '#4EC9B0' }}>Available immediately — remote or on-site</span>
+                <span style={{ color: 'rgba(78,201,176,0.85)' }}>Available immediately — remote or on-site</span>
               </span>
             </div>
 
+            {/* Name */}
             <h1 className="hero-line-2" style={{
               fontFamily: 'Inter', fontWeight: 900,
-              fontSize: 'clamp(3.8rem, 8.5vw, 9.2rem)',
+              fontSize: 'clamp(3.6rem, 8vw, 8.8rem)',
               lineHeight: 0.88, letterSpacing: '-0.05em',
-              marginBottom: '36px',
+              marginBottom: '40px',
             }}>
-              <span className="text-gradient">Rahul</span><br />
-              <span style={{ color: 'rgba(212,212,212,0.1)', WebkitTextStroke: '1px rgba(212,212,212,0.14)' }}>Sangral</span>
+              <span style={{ color: '#E8ECF4' }}>Rahul</span><br />
+              <span style={{ color: 'rgba(232,236,244,0.1)', WebkitTextStroke: '1px rgba(232,236,244,0.12)' }}>Sangral</span>
             </h1>
 
-            <div className="hero-line-3" style={{ display: 'flex', flexWrap: 'wrap', gap: '7px', marginBottom: '28px' }}>
-              {[
-                { label: 'AI / ML Developer', color: '#569CD6' },
-                { label: 'Data Analyst',       color: '#4EC9B0' },
-                { label: 'Full-Stack Dev',     color: '#CE9178' },
-                { label: 'Founder',            color: '#DCDCAA' },
-              ].map((r) => (
-                <span key={r.label} style={{
-                  fontFamily: 'JetBrains Mono', fontSize: '0.67rem',
-                  padding: '5px 13px', borderRadius: '6px',
-                  background: `${r.color}0e`, border: `1px solid ${r.color}28`,
-                  color: r.color,
-                  transition: 'background 0.2s, border-color 0.2s',
-                }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = `${r.color}1a`;
-                    (e.currentTarget as HTMLElement).style.borderColor = `${r.color}55`;
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.background = `${r.color}0e`;
-                    (e.currentTarget as HTMLElement).style.borderColor = `${r.color}28`;
-                  }}
-                >
-                  {r.label}
-                </span>
-              ))}
+            {/* Role */}
+            <div className="hero-line-3" style={{ marginBottom: '28px' }}>
+              <span style={{
+                fontFamily: 'JetBrains Mono', fontSize: '0.72rem', letterSpacing: '0.08em',
+                color: 'rgba(86,156,214,0.7)', textTransform: 'uppercase',
+              }}>
+                # AI / ML Developer · Data Analyst · Full-Stack Dev · Founder
+              </span>
             </div>
 
+            {/* Description */}
             <p className="hero-line-3" style={{
               fontFamily: 'Inter', fontSize: '1rem',
-              color: 'rgba(212,212,212,0.4)', lineHeight: 1.85,
-              maxWidth: '490px', marginBottom: '44px',
+              color: 'rgba(212,212,212,0.38)', lineHeight: 1.85,
+              maxWidth: '480px', marginBottom: '44px',
             }}>
               Building ML pipelines, RAG systems, and AI-powered products.
               Founder of{' '}
@@ -163,81 +147,73 @@ export default function Hero() {
                 className="link-draw" style={{ color: '#569CD6', fontWeight: 500 }}>
                 Aethex
               </a>
-              {' '}— a live medical SaaS with 200+ users.
+              {' '}— a live medical SaaS platform with 200+ registered users.
             </p>
 
-            <div className="hero-line-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '9px', marginBottom: '64px' }}>
-              <a href="#projects" data-testid="btn-view-work" className="btn-blue"
-                style={{ padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.88rem' }}>
-                View Work <span style={{ opacity: 0.65 }}>→</span>
+            {/* CTAs */}
+            <div className="hero-line-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '64px' }}>
+              <a href="#projects" data-testid="btn-view-work" className="btn-primary"
+                style={{ textDecoration: 'none' }}>
+                View Work →
               </a>
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
-                data-testid="btn-download-resume" className="btn-ghost"
-                style={{ padding: '12px 28px', textDecoration: 'none', fontFamily: 'Inter', fontSize: '0.88rem' }}>
+                data-testid="btn-download-resume" className="btn-secondary"
+                style={{ textDecoration: 'none' }}>
                 Resume ↗
               </a>
               <a href="https://linkedin.com/in/rahulsangral" target="_blank" rel="noopener noreferrer"
-                className="btn-ghost" style={{ padding: '12px 28px', textDecoration: 'none', fontFamily: 'Inter', fontSize: '0.88rem' }}>
+                className="btn-secondary" style={{ textDecoration: 'none' }}>
                 LinkedIn ↗
               </a>
             </div>
 
             {/* Stats */}
-            <div className="hero-line-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', maxWidth: '820px' }}>
-              {stats.map((s) => (
-                <div key={s.label} className="stat-card"
+            <div className="hero-line-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', maxWidth: '760px' }}>
+              {stats.map((s, i) => (
+                <div key={s.label}
                   style={{
-                    background: 'rgba(255,255,255,0.016)',
-                    border: '1px solid rgba(86,156,214,0.07)',
                     padding: '22px 16px',
-                    transition: 'background 0.25s, border-color 0.25s',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = 'rgba(86,156,214,0.05)';
-                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(86,156,214,0.22)';
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.016)';
-                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(86,156,214,0.07)';
-                  }}
-                >
-                  <div className="stat-val" style={{ fontFamily: 'JetBrains Mono', fontWeight: 600, fontSize: '1.5rem', color: s.color, letterSpacing: '-0.03em', marginBottom: '5px' }}>
+                    borderRight: i < 3 ? '1px solid rgba(86,156,214,0.08)' : 'none',
+                    borderTop: '1px solid rgba(86,156,214,0.08)',
+                  }}>
+                  <div style={{ fontFamily: 'JetBrains Mono', fontWeight: 600, fontSize: '1.45rem', color: '#569CD6', letterSpacing: '-0.02em', marginBottom: '5px' }}>
                     {s.value}
                   </div>
-                  <div style={{ fontFamily: 'Inter', fontSize: '0.72rem', color: 'rgba(212,212,212,0.4)', marginBottom: '3px' }}>
+                  <div style={{ fontFamily: 'Inter', fontSize: '0.7rem', color: 'rgba(212,212,212,0.38)', marginBottom: '3px' }}>
                     {s.label}
                   </div>
-                  <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.56rem', color: '#6A9955' }}>
-                    {s.note}
+                  <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.55rem', color: 'rgba(106,153,85,0.7)' }}>
+                    {s.sub}
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* ── Right: code card ── */}
-          <div className="hero-code-card float-card">
-            <div className="code-block" style={{ boxShadow: '0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(86,156,214,0.08)' }}>
+          {/* ── Right: code card (static) ── */}
+          <div>
+            <div className="code-block" style={{ boxShadow: '0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(86,156,214,0.07)' }}>
               <div className="code-tab-bar">
                 <div style={{ display: 'flex', gap: '6px', marginRight: '14px' }}>
                   {['#FF5F57','#FFBD2E','#28CA41'].map(c => (
-                    <div key={c} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c, opacity: 0.7 }} />
+                    <div key={c} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c, opacity: 0.65 }} />
                   ))}
                 </div>
                 {(['py','ts'] as const).map((id) => {
                   const meta = id === 'py'
-                    ? { label: 'profile.py',  color: '#CE9178' }
-                    : { label: 'contact.ts', color: '#569CD6' };
+                    ? { label: 'profile.py',  dot: '#CE9178' }
+                    : { label: 'contact.ts', dot: '#569CD6' };
                   return (
                     <button key={id} onClick={() => setTab(id)} style={{
                       background: 'none', border: 'none', padding: '0 15px', height: '100%',
                       fontFamily: 'JetBrains Mono', fontSize: '0.7rem',
                       color: tab === id ? '#D4D4D4' : 'rgba(212,212,212,0.28)',
-                      borderBottom: tab === id ? `2px solid ${meta.color}` : '2px solid transparent',
-                      cursor: 'none', transition: 'color 0.2s, border-color 0.2s',
+                      borderBottom: tab === id ? `2px solid ${meta.dot}` : '2px solid transparent',
+                      cursor: 'none',
                       display: 'flex', alignItems: 'center', gap: '7px',
+                      transition: 'color 0.2s',
                     }}>
-                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: meta.color, opacity: tab === id ? 0.85 : 0.3 }} />
+                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: meta.dot, opacity: tab === id ? 0.85 : 0.3 }} />
                       {meta.label}
                     </button>
                   );
@@ -252,21 +228,21 @@ export default function Hero() {
 
               <div className="code-status-bar">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4EC9B0', boxShadow: '0 0 6px rgba(78,201,176,0.8)' }} />
-                  <span style={{ color: '#4EC9B0' }}>open to work</span>
+                  <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4EC9B0', boxShadow: '0 0 6px rgba(78,201,176,0.6)' }} />
+                  <span style={{ color: 'rgba(78,201,176,0.7)' }}>open to work</span>
                 </div>
                 <span style={{ color: 'rgba(212,212,212,0.18)' }}>{tab === 'py' ? 'Python' : 'TypeScript'}</span>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '7px', marginTop: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '8px', marginTop: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
               {[
                 { label: 'github.com/sangralrahul', href: 'https://github.com/sangralrahul' },
                 { label: 'aethex.in',               href: 'https://aethex.in' },
               ].map(b => (
                 <a key={b.href} href={b.href} target="_blank" rel="noopener noreferrer"
-                  className="btn-ghost"
-                  style={{ padding: '5px 14px', fontSize: '0.63rem', textDecoration: 'none', fontFamily: 'JetBrains Mono' }}>
+                  className="btn-secondary"
+                  style={{ padding: '5px 14px', fontSize: '0.62rem', textDecoration: 'none', fontFamily: 'JetBrains Mono' }}>
                   {b.label} ↗
                 </a>
               ))}
@@ -278,7 +254,7 @@ export default function Hero() {
       <style>{`
         @media (max-width: 900px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-          .hero-code-card { display: none !important; }
+          .hero-grid > div:last-child { display: none !important; }
         }
       `}</style>
     </section>
