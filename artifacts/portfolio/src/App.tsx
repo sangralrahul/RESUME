@@ -19,7 +19,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div style={{ background: '#0A0A0A', color: '#FAFAFA', minHeight: '100vh', fontFamily: 'Inter, sans-serif', cursor: 'none', position: 'relative' }}>
+      <div style={{ background: '#070910', color: '#F1F5F9', minHeight: '100vh', fontFamily: 'Inter, sans-serif', cursor: 'none', position: 'relative' }}>
         <AnimatedBackground />
         <MouseSpotlight />
         <CustomCursor />
