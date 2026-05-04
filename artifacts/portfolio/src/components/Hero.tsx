@@ -13,7 +13,7 @@ const pyLines: Line[] = [
   { type: 'file', content: 'rahul.profile.py' },
   { type: 'empty' },
   { type: 'header', content: '── Identity ───────────────────────────' },
-  { type: 'kv', key: 'Role',          value: 'AI / ML Engineer' },
+  { type: 'kv', key: 'Role',          value: 'AI / ML Developer' },
   { type: 'kv', key: 'Experience',    value: '2+ years' },
   { type: 'kv', key: 'Location',      value: 'Jammu, India' },
   { type: 'kv', key: 'Timezone',      value: 'US Compatible' },
@@ -38,7 +38,7 @@ const tsLines: Line[] = [
   { type: 'kv', key: 'GitHub',        value: 'github.com/sangralrahul' },
   { type: 'empty' },
   { type: 'header', content: '── Looking For ─────────────────────────' },
-  { type: 'kv', key: 'Roles',         value: 'AI/ML Engineer, Data Analyst' },
+  { type: 'kv', key: 'Roles',         value: 'AI/ML Developer, Data Analyst' },
   { type: 'kv', key: 'Projects',      value: 'AI products, data pipelines' },
   { type: 'kv', key: 'Collab',        value: 'Open to investment & building' },
   { type: 'empty' },
@@ -133,7 +133,7 @@ export default function Hero() {
 
             <div className="hero-line-3" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
               {[
-                { label: 'AI / ML Engineer', color: '#569CD6' },
+                { label: 'AI / ML Developer', color: '#569CD6' },
                 { label: 'Data Analyst', color: '#4EC9B0' },
                 { label: 'Full-Stack Dev', color: '#CE9178' },
                 { label: 'Founder', color: '#DCDCAA' },

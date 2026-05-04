@@ -26,7 +26,7 @@ const certs: Cert[] = [
   },
   {
     fileName: 'microsoft_ai_ml.ts',
-    name: 'Microsoft AI/ML Engineering Certificate',
+    name: 'Microsoft AI/ML Development Certificate',
     issuer: 'Microsoft',
     year: '2025',
     accentColor: '#00A4EF',

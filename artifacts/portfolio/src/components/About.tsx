@@ -5,7 +5,7 @@ const bioLines = [
   { type: 'file', text: 'profile.py' },
   { type: 'empty' },
   { type: 'header', text: '── Who I Am ──────────────────────────────────' },
-  { type: 'desc', text: 'AI/ML Engineer with 2+ years of independent' },
+  { type: 'desc', text: 'AI/ML Developer with 2+ years of independent' },
   { type: 'desc', text: 'development experience. I build ML pipelines,' },
   { type: 'desc', text: 'RAG systems, ETL workflows, REST APIs, SQL' },
   { type: 'desc', text: 'dashboards, and full-stack applications.' },
@@ -46,7 +46,7 @@ export default function About() {
             </div>
 
             <h2 style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', color: '#D4D4D4', letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: '28px' }}>
-              AI/ML Engineer.<br />
+              AI/ML Developer.<br />
               <span style={{ color: 'rgba(212,212,212,0.22)' }}>Data Analyst.</span><br />
               Founder.
             </h2>
