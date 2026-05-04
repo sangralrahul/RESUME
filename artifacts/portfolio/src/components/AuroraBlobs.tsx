@@ -1,50 +1,51 @@
+/* Deep-ocean ambient light blobs */
 export default function AuroraBlobs() {
   return (
     <>
       <style>{`
-        @keyframes orb1 {
+        @keyframes deepsea1 {
           0%,100% { transform: translate(0,0) scale(1); }
-          33%      { transform: translate(-40px,35px) scale(1.08); }
-          66%      { transform: translate(30px,-25px) scale(0.94); }
+          30%      { transform: translate(-50px,40px) scale(1.10); }
+          70%      { transform: translate(35px,-30px) scale(0.92); }
         }
-        @keyframes orb2 {
+        @keyframes deepsea2 {
           0%,100% { transform: translate(0,0) scale(1); }
-          40%     { transform: translate(45px,-40px) scale(1.10); }
-          80%     { transform: translate(-30px,35px) scale(0.92); }
+          40%      { transform: translate(55px,-50px) scale(1.12); }
+          75%      { transform: translate(-40px,45px) scale(0.90); }
         }
-        @keyframes orb3 {
+        @keyframes deepsea3 {
           0%,100% { transform: translate(0,0) scale(1); }
-          50%     { transform: translate(-35px,-30px) scale(1.06); }
+          50%      { transform: translate(-40px,-35px) scale(1.08); }
         }
       `}</style>
 
-      {/* Top-right blue orb */}
+      {/* Top-right — deep ocean teal */}
       <div style={{
-        position: 'fixed', top: '-200px', right: '-150px',
-        width: '800px', height: '800px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(86,156,214,0.08) 0%, transparent 65%)',
-        filter: 'blur(80px)',
-        animation: 'orb1 30s ease-in-out infinite',
-        pointerEvents: 'none', zIndex: 0, willChange: 'transform',
-      }} />
-
-      {/* Bottom-left teal orb */}
-      <div style={{
-        position: 'fixed', bottom: '-150px', left: '-100px',
-        width: '600px', height: '600px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(78,201,176,0.06) 0%, transparent 65%)',
+        position: 'fixed', top: '-220px', right: '-180px',
+        width: '900px', height: '900px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(0,180,216,0.07) 0%, transparent 62%)',
         filter: 'blur(90px)',
-        animation: 'orb2 38s ease-in-out infinite',
+        animation: 'deepsea1 32s ease-in-out infinite',
         pointerEvents: 'none', zIndex: 0, willChange: 'transform',
       }} />
 
-      {/* Center-left muted purple */}
+      {/* Bottom-left — aqua */}
       <div style={{
-        position: 'fixed', top: '40%', left: '-160px',
-        width: '500px', height: '500px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(197,134,192,0.05) 0%, transparent 65%)',
+        position: 'fixed', bottom: '-180px', left: '-120px',
+        width: '700px', height: '700px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(0,206,209,0.06) 0%, transparent 62%)',
         filter: 'blur(100px)',
-        animation: 'orb3 44s ease-in-out infinite',
+        animation: 'deepsea2 42s ease-in-out infinite',
+        pointerEvents: 'none', zIndex: 0, willChange: 'transform',
+      }} />
+
+      {/* Mid-left — deep navy accent */}
+      <div style={{
+        position: 'fixed', top: '35%', left: '-180px',
+        width: '560px', height: '560px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(0,77,143,0.08) 0%, transparent 65%)',
+        filter: 'blur(110px)',
+        animation: 'deepsea3 50s ease-in-out infinite',
         pointerEvents: 'none', zIndex: 0, willChange: 'transform',
       }} />
     </>
