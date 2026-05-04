@@ -1,7 +1,7 @@
 import express, { type Express } from "express";
 import cors from "cors";
 import pinoHttpImport from "pino-http";
-import router from "./routes";
+import router from "./routes/index";
 import { logger } from "./lib/logger";
 
 const pinoHttp: any = (pinoHttpImport as any).default ?? pinoHttpImport;
@@ -33,5 +33,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
+
+app.get("/", (_req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "Resume API Server is running",
+  });
+});
 
 export default app;
