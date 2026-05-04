@@ -18,7 +18,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div style={{ background: '#03050d', color: '#D4D4D4', minHeight: '100vh', fontFamily: 'Inter, sans-serif', position: 'relative' }}>
+      <div style={{ background: '#01040b', color: '#D4D4D4', minHeight: '100vh', fontFamily: 'Inter, sans-serif', position: 'relative' }}>
         <AuroraBlobs />
         <AnimatedBackground />
         <ScrollProgress />
