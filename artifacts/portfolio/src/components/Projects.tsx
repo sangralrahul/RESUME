@@ -2,8 +2,8 @@ import { useRef } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface Project {
-  fnName: string;
-  returnType: string;
+  fileName: string;
+  title: string;
   badge: string;
   badgeColor: string;
   year: string;
@@ -18,73 +18,79 @@ interface Project {
 
 const projects: Project[] = [
   {
-    fnName: 'aethex_platform',
-    returnType: "Promise<{ users: 200 }>",
+    fileName: 'aethex_platform.py',
+    title: 'Aethex Platform',
     badge: 'Live Product',
     badgeColor: '#4EC9B0',
-    year: '2025–Present',
-    description: 'AI-powered medical SaaS serving 200+ registered users. Cadus AI clinical assistant, drug reference database, NEET-PG MCQ engine, CME hub. Integrated Razorpay, Firebase, Brevo, and GA4.',
-    result: '200+ users',
-    tags: ['React', 'FastAPI', 'ClaudeAPI', 'Firebase', 'Docker', 'AWS'],
+    year: '2025 – Present',
+    description: 'AI-powered medical SaaS serving 200+ registered users. Features Cadus AI clinical assistant, drug reference database, NEET-PG MCQ engine, and CME hub. Integrated Razorpay, Firebase, Brevo, and GA4.',
+    result: '200+ registered users',
+    tags: ['React', 'FastAPI', 'Claude API', 'Firebase', 'Docker', 'AWS'],
     link: 'https://aethex.in',
-    linkLabel: 'visit_live() ↗',
+    linkLabel: 'Visit Live ↗',
     featured: true,
     isExternal: true,
   },
   {
-    fnName: 'ai_data_insights_engine',
-    returnType: "Promise<{ speedup: '60%' }>",
+    fileName: 'ai_insights_engine.py',
+    title: 'AI Data Insights Engine',
     badge: 'Open Source',
     badgeColor: '#569CD6',
-    year: '2025–2026',
-    description: 'LLM-powered analytics tool that auto-ingests CSV/Excel and generates summaries, trend charts, and anomaly alerts. Claude API for natural-language querying.',
+    year: '2025 – 2026',
+    description: 'LLM-powered analytics tool that auto-ingests CSV/Excel datasets and generates business summaries, trend charts, and anomaly alerts. Uses Claude API for natural-language querying — no SQL needed.',
     result: '60% faster analysis',
-    tags: ['ClaudeAPI', 'Python', 'Streamlit', 'Pandas'],
+    tags: ['Claude API', 'Python', 'Streamlit', 'Pandas'],
     link: '/ai-data-insights-engine.pdf',
-    linkLabel: 'case_study()',
+    linkLabel: 'Case Study',
   },
   {
-    fnName: 'sql_fix_env_v2',
-    returnType: "Promise<HuggingFaceSpace>",
+    fileName: 'sql_fix_env.ts',
+    title: 'SQLFixEnv v2.0',
     badge: 'Hackathon',
     badgeColor: '#C586C0',
     year: '2025',
-    description: 'AI-powered SQL debugging and pipeline orchestration env. Built for Meta × HuggingFace PyTorch Hackathon. Live on HuggingFace Spaces.',
+    description: 'AI-powered SQL debugging and pipeline orchestration environment. Built for the Meta × HuggingFace PyTorch Hackathon. Currently live on HuggingFace Spaces.',
     result: 'Live on HuggingFace',
     tags: ['Python', 'SQL', 'PyTorch', 'HuggingFace'],
     link: 'https://huggingface.co/spaces/SANGRALRAHUL/SQLFixEnv',
-    linkLabel: 'view_live() ↗',
+    linkLabel: 'View Live ↗',
     isExternal: true,
   },
   {
-    fnName: 'kpi_performance_dashboard',
-    returnType: "Promise<{ req_reduction: '40%' }>",
+    fileName: 'kpi_dashboard.py',
+    title: 'KPI Performance Dashboard',
     badge: 'BI Project',
     badgeColor: '#DCDCAA',
     year: '2025',
-    description: 'Full BI pipeline orchestrating live SQL data into Tableau with dynamic drill-down filters. Reduced ad-hoc reporting requests by ~40%.',
+    description: 'Full BI pipeline orchestrating live SQL data into Tableau with dynamic drill-down filters and KPI visualizations. Reduced ad-hoc reporting requests by approximately 40%.',
     result: '~40% fewer requests',
-    tags: ['SQL', 'Tableau', 'Python', 'ETL'],
+    tags: ['SQL', 'Tableau', 'Python', 'ETL', 'Power Query'],
     link: '/kpi-dashboard.pdf',
-    linkLabel: 'case_study()',
+    linkLabel: 'Case Study',
   },
   {
-    fnName: 'rag_document_intelligence',
-    returnType: "Promise<{ latency: '<2s' }>",
+    fileName: 'rag_intelligence.ts',
+    title: 'RAG Document Intelligence',
     badge: 'Open Source',
     badgeColor: '#569CD6',
-    year: '2025–2026',
-    description: 'RAG pipeline for natural-language querying of any PDF or document set. Claude API backend deployed on AWS EC2.',
-    result: '< 2s query response',
-    tags: ['ClaudeAPI', 'FastAPI', 'RAG', 'Python', 'AWS'],
+    year: '2025 – 2026',
+    description: 'RAG pipeline for natural-language querying of any PDF or document set. Claude API backend deployed on AWS EC2. Responds in under 2 seconds.',
+    result: 'Under 2s response',
+    tags: ['Claude API', 'FastAPI', 'RAG', 'Python', 'AWS'],
     link: '/rag-document-intelligence.pdf',
-    linkLabel: 'case_study()',
+    linkLabel: 'Case Study',
   },
 ];
 
 export default function Projects() {
   const ref = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(ref);
+
+  const cmt = 'rgba(212,212,212,0.28)';
+  const txt = 'rgba(212,212,212,0.62)';
+  const hdr = '#569CD6';
+  const key = '#9CDCFE';
+  const org = '#CE9178';
 
   return (
     <section id="projects" ref={ref} style={{ padding: '112px 0' }}>
@@ -100,51 +106,81 @@ export default function Projects() {
         </h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-          {projects.map((p, idx) => (
-            <div
-              key={idx}
-              className="card-glass-flat"
-              style={{ padding: '22px 26px', borderRadius: '12px', display: 'grid', gridTemplateColumns: '1fr auto', gap: '24px', alignItems: 'center' }}
-            >
-              <div>
-                {/* Function signature line */}
-                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.74rem', marginBottom: '10px', lineHeight: 1.5, flexWrap: 'wrap', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <span className="badge" style={{ background: `${p.badgeColor}10`, color: p.badgeColor, border: `1px solid ${p.badgeColor}22`, marginRight: '6px' }}>
-                    {p.badge}
+          {projects.map((p, idx) => {
+            const isPy = p.fileName.endsWith('.py');
+            const pfx = isPy ? '#' : '//';
+            return (
+              <div key={idx} className="code-block" style={{ borderRadius: '12px' }}>
+                <div className="code-tab-bar">
+                  <div style={{ display: 'flex', gap: '5px', marginRight: '12px' }}>
+                    {['#FF5F57', '#FFBD2E', '#28CA41'].map(c => (
+                      <div key={c} style={{ width: '8px', height: '8px', borderRadius: '50%', background: c, opacity: 0.55 }} />
+                    ))}
+                  </div>
+                  <div className="code-tab active">
+                    <div className="code-tab-dot" style={{ background: p.badgeColor }} />
+                    {p.fileName}
+                  </div>
+                  <span className="badge" style={{
+                    background: `${p.badgeColor}10`, color: p.badgeColor,
+                    border: `1px solid ${p.badgeColor}22`, marginLeft: '8px',
+                  }}>{p.badge}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.6rem', color: cmt, marginLeft: '8px' }}>
+                    {pfx} {p.year}
                   </span>
-                  <span className="t-kw">async function </span>
-                  <span className="t-fn" style={{ color: p.badgeColor }}>{p.fnName}</span>
-                  <span className="t-op">(): </span>
-                  <span className="t-type">{p.returnType}</span>
-                  <span className="t-cmt" style={{ marginLeft: '8px' }}>// {p.year}</span>
+                  <div style={{ marginLeft: 'auto' }}>
+                    <a
+                      href={p.link}
+                      target={p.isExternal ? '_blank' : undefined}
+                      rel={p.isExternal ? 'noopener noreferrer' : undefined}
+                      data-testid={`btn-view-${idx}`}
+                      className={p.featured ? 'btn-blue' : 'btn-ghost'}
+                      style={{ padding: '5px 14px', textDecoration: 'none', fontSize: '0.7rem', fontFamily: 'Inter', fontWeight: 500 }}
+                    >
+                      {p.linkLabel}
+                    </a>
+                  </div>
                 </div>
 
-                <p style={{ fontFamily: 'Inter', fontSize: '0.83rem', color: 'rgba(212,212,212,0.38)', lineHeight: 1.75, marginBottom: '12px', maxWidth: '580px' }}>
-                  {p.description}
-                </p>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: '#569CD6' }}>
-                    return <span style={{ color: '#CE9178' }}>"{p.result}"</span>;
-                  </span>
-                  <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
-                    {p.tags.map((t) => <span key={t} className="tag">{t}</span>)}
+                <div className="code-body" style={{ padding: '14px 22px' }}>
+                  {/* Title line */}
+                  <div style={{ display: 'flex', minHeight: '1.1em', marginBottom: '2px' }}>
+                    <span className="ln">1</span>
+                    <span><span style={{ color: cmt }}>{pfx} </span><span style={{ color: hdr }}>── {p.title} ──</span></span>
+                  </div>
+                  {/* Result line */}
+                  <div style={{ display: 'flex', minHeight: '1.1em', marginBottom: '2px' }}>
+                    <span className="ln">2</span>
+                    <span>
+                      <span style={{ color: cmt }}>{pfx}  </span>
+                      <span style={{ color: key, display: 'inline-block', minWidth: '56px' }}>Result</span>
+                      <span style={{ color: 'rgba(212,212,212,0.3)', margin: '0 8px' }}>→</span>
+                      <span style={{ color: org }}>{p.result}</span>
+                    </span>
+                  </div>
+                  {/* Tags line */}
+                  <div style={{ display: 'flex', minHeight: '1.1em', marginBottom: '6px' }}>
+                    <span className="ln">3</span>
+                    <span>
+                      <span style={{ color: cmt }}>{pfx}  </span>
+                      <span style={{ color: key, display: 'inline-block', minWidth: '56px' }}>Stack</span>
+                      <span style={{ color: 'rgba(212,212,212,0.3)', margin: '0 8px' }}>→</span>
+                      <span style={{ color: 'rgba(212,212,212,0.45)' }}>{p.tags.join(' · ')}</span>
+                    </span>
+                  </div>
+                  {/* Empty */}
+                  <div style={{ display: 'flex', minHeight: '0.5em' }}>
+                    <span className="ln">4</span>
+                  </div>
+                  {/* Description */}
+                  <div style={{ display: 'flex', minHeight: '1.1em' }}>
+                    <span className="ln">5</span>
+                    <span style={{ color: cmt }}>{pfx}  <span style={{ color: txt, fontFamily: 'Inter', fontSize: '0.82rem' }}>{p.description}</span></span>
                   </div>
                 </div>
               </div>
-
-              <a
-                href={p.link}
-                target={p.isExternal ? '_blank' : undefined}
-                rel={p.isExternal ? 'noopener noreferrer' : undefined}
-                data-testid={`btn-view-${idx}`}
-                className={p.featured ? 'btn-blue' : 'btn-ghost'}
-                style={{ padding: '9px 18px', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}
-              >
-                {p.linkLabel}
-              </a>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

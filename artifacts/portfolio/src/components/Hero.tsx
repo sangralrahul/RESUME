@@ -1,42 +1,99 @@
 import { useState } from 'react';
 
-const pyLines = [
-  <><span className="t-cmt"># rahul.profile.py</span></>,
-  <></>,
-  <><span className="t-kw">class </span><span className="t-fn">RahulSangral</span><span className="t-op">:</span></>,
-  <><span style={{marginLeft:20}}><span className="t-cmt">"""AI/ML Engineer | Data Analyst | Founder"""</span></span></>,
-  <></>,
-  <><span style={{marginLeft:20}}><span className="t-var">role</span><span className="t-op">: </span><span className="t-type">str</span><span className="t-op"> = </span><span className="t-str">"AI/ML Engineer"</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">experience</span><span className="t-op">: </span><span className="t-type">str</span><span className="t-op"> = </span><span className="t-str">"2+ years"</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">location</span><span className="t-op">: </span><span className="t-type">str</span><span className="t-op"> = </span><span className="t-str">"Jammu, India"</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">timezone</span><span className="t-op">: </span><span className="t-type">str</span><span className="t-op"> = </span><span className="t-str">"US Compatible"</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">building</span><span className="t-op">: </span><span className="t-type">str</span><span className="t-op"> = </span><span className="t-str">"Aethex"</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">users</span><span className="t-op">: </span><span className="t-type">int</span><span className="t-op"> = </span><span className="t-num">200</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">status</span><span className="t-op">: </span><span className="t-type">Literal</span><span className="t-op">["</span><span className="t-str">available</span><span className="t-op">"] = </span><span className="t-str">"available"</span><span style={{color:'#4EC9B0', marginLeft: 4}}>●</span></span></>,
+// Each line: { type: 'file'|'empty'|'header'|'kv'|'desc'|'bullet', ... }
+interface Line {
+  type: 'file' | 'empty' | 'header' | 'kv' | 'desc' | 'bullet';
+  content?: string;
+  key?: string;
+  value?: string;
+  green?: boolean;
+}
+
+const pyLines: Line[] = [
+  { type: 'file', content: 'rahul.profile.py' },
+  { type: 'empty' },
+  { type: 'header', content: '── Identity ───────────────────────────' },
+  { type: 'kv', key: 'Role',          value: 'AI / ML Engineer' },
+  { type: 'kv', key: 'Experience',    value: '2+ years' },
+  { type: 'kv', key: 'Location',      value: 'Jammu, India' },
+  { type: 'kv', key: 'Timezone',      value: 'US Compatible' },
+  { type: 'empty' },
+  { type: 'header', content: '── Currently Building ─────────────────' },
+  { type: 'kv', key: 'Product',       value: 'Aethex (aethex.in)' },
+  { type: 'kv', key: 'Active Users',  value: '200+ registered' },
+  { type: 'kv', key: 'Stack',         value: 'Python · React · FastAPI' },
+  { type: 'empty' },
+  { type: 'header', content: '── Availability ───────────────────────' },
+  { type: 'kv', key: 'Status',        value: 'available immediately', green: true },
+  { type: 'kv', key: 'Open to',       value: 'Remote · On-site · U.S. hours' },
 ];
 
-const tsLines = [
-  <><span className="t-cmt">// rahul.profile.ts</span></>,
-  <></>,
-  <><span className="t-kw">interface </span><span className="t-type">Profile</span><span className="t-op"> {'{'}</span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">role</span><span className="t-op">: </span><span className="t-type">string</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">experience</span><span className="t-op">: </span><span className="t-type">string</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">location</span><span className="t-op">: </span><span className="t-type">string</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">building</span><span className="t-op">: </span><span className="t-type">string</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">users</span><span className="t-op">: </span><span className="t-type">number</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">status</span><span className="t-op">: </span><span className="t-str">"available"</span></span></>,
-  <><span className="t-op">{'}'}</span></>,
-  <></>,
-  <><span className="t-kw">const </span><span className="t-var">profile</span><span className="t-op">: </span><span className="t-type">Profile</span><span className="t-op"> = {'{'}</span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">role</span><span className="t-op">: </span><span className="t-str">"AI/ML Engineer"</span><span className="t-op">,</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">experience</span><span className="t-op">: </span><span className="t-str">"2+ years"</span><span className="t-op">,</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">users</span><span className="t-op">: </span><span className="t-num">200</span><span className="t-op">,</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-var">status</span><span className="t-op">: </span><span className="t-str">"available"</span><span style={{color:'#4EC9B0', marginLeft: 4}}>●</span></span></>,
-  <><span className="t-op">{'}'}</span></>,
+const tsLines: Line[] = [
+  { type: 'file', content: 'rahul.contact.ts' },
+  { type: 'empty' },
+  { type: 'header', content: '── Contact ─────────────────────────────' },
+  { type: 'kv', key: 'Email',         value: 'rahul.rishusangral@gmail.com' },
+  { type: 'kv', key: 'Phone',         value: '+91 9682394363' },
+  { type: 'kv', key: 'LinkedIn',      value: 'linkedin.com/in/rahulsangral' },
+  { type: 'kv', key: 'GitHub',        value: 'github.com/sangralrahul' },
+  { type: 'empty' },
+  { type: 'header', content: '── Looking For ─────────────────────────' },
+  { type: 'kv', key: 'Roles',         value: 'AI/ML Engineer, Data Analyst' },
+  { type: 'kv', key: 'Projects',      value: 'AI products, data pipelines' },
+  { type: 'kv', key: 'Collab',        value: 'Open to investment & building' },
+  { type: 'empty' },
+  { type: 'kv', key: 'Status',        value: 'available immediately', green: true },
 ];
+
+function CodeLine({ line, num }: { line: Line; num: number }) {
+  const cmt = 'rgba(212,212,212,0.28)';
+  const val = 'rgba(212,212,212,0.72)';
+  const hdr = '#569CD6';
+  const key = '#9CDCFE';
+  const grn = '#4EC9B0';
+
+  if (line.type === 'empty') {
+    return (
+      <div style={{ display: 'flex', minHeight: '0.6em' }}>
+        <span className="ln">{num}</span>
+      </div>
+    );
+  }
+  if (line.type === 'file') {
+    return (
+      <div style={{ display: 'flex', minHeight: '1.1em' }}>
+        <span className="ln">{num}</span>
+        <span style={{ color: cmt, fontStyle: 'italic' }}># {line.content}</span>
+      </div>
+    );
+  }
+  if (line.type === 'header') {
+    return (
+      <div style={{ display: 'flex', minHeight: '1.1em' }}>
+        <span className="ln">{num}</span>
+        <span><span style={{ color: cmt }}>{'# '}</span><span style={{ color: hdr }}>{line.content}</span></span>
+      </div>
+    );
+  }
+  if (line.type === 'kv') {
+    return (
+      <div style={{ display: 'flex', minHeight: '1.1em' }}>
+        <span className="ln">{num}</span>
+        <span>
+          <span style={{ color: cmt }}>#  </span>
+          <span style={{ color: key, display: 'inline-block', minWidth: '100px' }}>{line.key}</span>
+          <span style={{ color: 'rgba(212,212,212,0.3)', margin: '0 8px' }}>→</span>
+          <span style={{ color: line.green ? grn : val }}>{line.value}</span>
+          {line.green && <span style={{ color: grn, marginLeft: 5 }}>●</span>}
+        </span>
+      </div>
+    );
+  }
+  return null;
+}
 
 export default function Hero() {
-  const [tab, setTab] = useState<'py'|'ts'>('py');
+  const [tab, setTab] = useState<'py' | 'ts'>('py');
   const lines = tab === 'py' ? pyLines : tsLines;
 
   return (
@@ -55,16 +112,12 @@ export default function Hero() {
             <div className="hero-line-1" style={{ marginBottom: '44px' }}>
               <span style={{
                 display: 'inline-flex', alignItems: 'center', gap: '10px',
-                background: 'rgba(78,201,176,0.06)',
-                border: '1px solid rgba(78,201,176,0.18)',
-                borderRadius: '6px', padding: '6px 14px 6px 12px',
-                fontFamily: 'JetBrains Mono', fontSize: '0.68rem',
+                background: 'rgba(78,201,176,0.06)', border: '1px solid rgba(78,201,176,0.18)',
+                borderRadius: '6px', padding: '7px 16px 7px 12px',
+                fontFamily: 'JetBrains Mono', fontSize: '0.7rem',
               }}>
                 <span className="pulse-green" style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4EC9B0', display: 'block', flexShrink: 0 }} />
-                <span style={{ color: '#4EC9B0', letterSpacing: '0.06em' }}>
-                  <span style={{ color: 'rgba(78,201,176,0.5)' }}>status: </span>
-                  "available immediately"
-                </span>
+                <span style={{ color: '#4EC9B0' }}>Available immediately — remote or on-site</span>
               </span>
             </div>
 
@@ -80,29 +133,27 @@ export default function Hero() {
 
             <div className="hero-line-3" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
               {[
-                { label: 'AI/ML Engineer', color: '#569CD6' },
+                { label: 'AI / ML Engineer', color: '#569CD6' },
                 { label: 'Data Analyst', color: '#4EC9B0' },
                 { label: 'Full-Stack Dev', color: '#CE9178' },
                 { label: 'Founder', color: '#DCDCAA' },
               ].map((r) => (
                 <span key={r.label} style={{
                   fontFamily: 'JetBrains Mono', fontSize: '0.67rem',
-                  padding: '4px 11px', borderRadius: '5px',
-                  background: `${r.color}10`,
-                  border: `1px solid ${r.color}28`,
+                  padding: '4px 12px', borderRadius: '5px',
+                  background: `${r.color}10`, border: `1px solid ${r.color}28`,
                   color: r.color,
                 }}>
-                  <span style={{ opacity: 0.5 }}>@</span>{r.label}
+                  {r.label}
                 </span>
               ))}
             </div>
 
             <p className="hero-line-3" style={{
               fontFamily: 'Inter', fontSize: '0.98rem',
-              color: 'rgba(212,212,212,0.4)',
-              lineHeight: 1.8, maxWidth: '480px', marginBottom: '40px',
+              color: 'rgba(212,212,212,0.42)', lineHeight: 1.8, maxWidth: '480px', marginBottom: '40px',
             }}>
-              Building ML pipelines, RAG systems, and AI products.
+              Building ML pipelines, RAG systems, and AI-powered products.
               Founder of{' '}
               <a href="https://aethex.in" target="_blank" rel="noopener noreferrer"
                 className="link-draw" style={{ color: '#569CD6', fontWeight: 500 }}>
@@ -113,26 +164,26 @@ export default function Hero() {
 
             <div className="hero-line-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '68px' }}>
               <a href="#projects" data-testid="btn-view-work" className="btn-blue"
-                style={{ padding: '11px 26px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                view_work() <span style={{ opacity: 0.5 }}>→</span>
+                style={{ padding: '11px 26px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'Inter', fontWeight: 600 }}>
+                View Work <span style={{ opacity: 0.6 }}>→</span>
               </a>
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
                 data-testid="btn-download-resume" className="btn-ghost"
-                style={{ padding: '11px 26px', textDecoration: 'none' }}>
-                resume.pdf ↗
+                style={{ padding: '11px 26px', textDecoration: 'none', fontFamily: 'Inter' }}>
+                Resume ↗
               </a>
               <a href="https://linkedin.com/in/rahulsangral" target="_blank" rel="noopener noreferrer"
-                className="btn-ghost" style={{ padding: '11px 26px', textDecoration: 'none' }}>
-                linkedin ↗
+                className="btn-ghost" style={{ padding: '11px 26px', textDecoration: 'none', fontFamily: 'Inter' }}>
+                LinkedIn ↗
               </a>
             </div>
 
             <div className="hero-line-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', maxWidth: '800px' }}>
               {[
-                { value: '200+', label: 'users', note: 'Aethex' },
-                { value: '60%', label: 'faster_analysis', note: 'AI engine' },
-                { value: '10h+', label: 'saved_weekly', note: 'SND tech' },
-                { value: '2+', label: 'years_building', note: 'AI/ML' },
+                { value: '200+', label: 'Platform Users', note: '# Aethex' },
+                { value: '60%', label: 'Faster Analysis', note: '# AI Engine' },
+                { value: '10h+', label: 'Saved Weekly', note: '# SND Tech' },
+                { value: '2+', label: 'Years Building', note: '# AI / ML' },
               ].map((s) => (
                 <div key={s.label} className="stat-card"
                   style={{
@@ -150,14 +201,14 @@ export default function Hero() {
                     (e.currentTarget as HTMLElement).style.borderColor = 'rgba(86,156,214,0.08)';
                   }}
                 >
-                  <div className="stat-val" style={{ fontFamily: 'JetBrains Mono', fontWeight: 600, fontSize: '1.4rem', color: '#D4D4D4', letterSpacing: '-0.02em', marginBottom: '4px' }}>
+                  <div className="stat-val" style={{ fontFamily: 'JetBrains Mono', fontWeight: 600, fontSize: '1.4rem', color: '#D4D4D4', letterSpacing: '-0.02em', marginBottom: '5px' }}>
                     {s.value}
                   </div>
-                  <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#9CDCFE', marginBottom: '3px' }}>
+                  <div style={{ fontFamily: 'Inter', fontSize: '0.72rem', color: 'rgba(212,212,212,0.45)', marginBottom: '3px' }}>
                     {s.label}
                   </div>
-                  <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.56rem', color: 'rgba(212,212,212,0.18)' }}>
-                    <span style={{ color: '#6A9955' }}># </span>{s.note}
+                  <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.56rem', color: '#6A9955' }}>
+                    {s.note}
                   </div>
                 </div>
               ))}
@@ -167,44 +218,34 @@ export default function Hero() {
           {/* Right: dual-tab code card */}
           <div className="hero-code-card">
             <div className="code-block" style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.5)' }}>
-              {/* Tab bar */}
-              <div className="code-tab-bar" style={{ gap: 0 }}>
+              <div className="code-tab-bar">
                 <div style={{ display: 'flex', gap: '6px', marginRight: '12px' }}>
-                  {['#FF5F57','#FFBD2E','#28CA41'].map(c => (
+                  {['#FF5F57', '#FFBD2E', '#28CA41'].map(c => (
                     <div key={c} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c, opacity: 0.65 }} />
                   ))}
                 </div>
-                {([['py', 'profile.py', '#CE9178'], ['ts', 'profile.ts', '#569CD6']] as const).map(([id, label, color]) => (
-                  <button
-                    key={id}
-                    onClick={() => setTab(id)}
-                    style={{
-                      background: 'none', border: 'none', padding: '0 14px', height: '100%',
-                      fontFamily: 'JetBrains Mono', fontSize: '0.7rem',
-                      color: tab === id ? '#D4D4D4' : 'rgba(212,212,212,0.3)',
-                      borderBottom: tab === id ? `2px solid ${color}` : '2px solid transparent',
-                      cursor: 'none',
-                      transition: 'color 0.2s, border-color 0.2s',
-                      display: 'flex', alignItems: 'center', gap: '7px',
-                    }}
-                  >
+                {([['py', 'profile.py', '#CE9178'], ['ts', 'contact.ts', '#569CD6']] as const).map(([id, label, color]) => (
+                  <button key={id} onClick={() => setTab(id)} style={{
+                    background: 'none', border: 'none', padding: '0 14px', height: '100%',
+                    fontFamily: 'JetBrains Mono', fontSize: '0.7rem',
+                    color: tab === id ? '#D4D4D4' : 'rgba(212,212,212,0.3)',
+                    borderBottom: tab === id ? `2px solid ${color}` : '2px solid transparent',
+                    cursor: 'none',
+                    transition: 'color 0.2s, border-color 0.2s',
+                    display: 'flex', alignItems: 'center', gap: '7px',
+                  }}>
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: color, opacity: tab === id ? 0.8 : 0.3 }} />
                     {label}
                   </button>
                 ))}
               </div>
 
-              {/* Code body */}
               <div className="code-body">
                 {lines.map((line, i) => (
-                  <div key={`${tab}-${i}`} style={{ display: 'flex', minHeight: '1.2em' }}>
-                    <span className="ln">{i + 1}</span>
-                    <span style={{ flex: 1 }}>{line}</span>
-                  </div>
+                  <CodeLine key={`${tab}-${i}`} line={line} num={i + 1} />
                 ))}
               </div>
 
-              {/* Status bar */}
               <div className="code-status-bar">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4EC9B0' }} />
@@ -212,7 +253,6 @@ export default function Hero() {
                 </div>
                 <div style={{ display: 'flex', gap: '16px' }}>
                   <span style={{ color: 'rgba(212,212,212,0.2)' }}>{tab === 'py' ? 'Python' : 'TypeScript'}</span>
-                  <span style={{ color: 'rgba(212,212,212,0.2)' }}>UTF-8</span>
                 </div>
               </div>
             </div>
@@ -224,14 +264,12 @@ export default function Hero() {
               ].map((b) => (
                 <a key={b.href} href={b.href} target="_blank" rel="noopener noreferrer"
                   className="btn-ghost"
-                  style={{ padding: '5px 13px', fontSize: '0.63rem', textDecoration: 'none' }}
-                >
+                  style={{ padding: '5px 13px', fontSize: '0.63rem', textDecoration: 'none', fontFamily: 'JetBrains Mono' }}>
                   {b.label} ↗
                 </a>
               ))}
             </div>
           </div>
-
         </div>
       </div>
 

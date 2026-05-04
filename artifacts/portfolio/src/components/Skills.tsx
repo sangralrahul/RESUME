@@ -1,44 +1,86 @@
 import { useRef } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
-const pyLines = [
-  <><span className="t-cmt"># skills.py — Python & Data stack</span></>,
-  <></>,
-  <><span className="t-kw">from </span><span className="t-var">analytics</span><span className="t-kw"> import </span><span className="t-op">(</span></>,
-  <><span style={{marginLeft:20}}><span className="t-fn">pandas</span><span className="t-op">, </span><span className="t-fn">numpy</span><span className="t-op">, </span><span className="t-fn">scikit_learn</span><span className="t-op">,</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-fn">tableau</span><span className="t-op">, </span><span className="t-fn">power_bi</span><span className="t-op">, </span><span className="t-fn">excel</span><span className="t-op">,</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-fn">streamlit</span><span className="t-op">, </span><span className="t-fn">matplotlib</span><span className="t-op">, </span><span className="t-fn">sql</span></span></>,
-  <><span className="t-op">)</span></>,
-  <></>,
-  <><span className="t-kw">from </span><span className="t-var">ai_ml</span><span className="t-kw"> import </span><span className="t-op">(</span></>,
-  <><span style={{marginLeft:20}}><span className="t-fn">machine_learning</span><span className="t-op">, </span><span className="t-fn">deep_learning</span><span className="t-op">,</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-fn">nlp</span><span className="t-op">, </span><span className="t-fn">rag_pipelines</span><span className="t-op">, </span><span className="t-fn">claude_api</span><span className="t-op">,</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-fn">amazon_bedrock</span><span className="t-op">, </span><span className="t-fn">vertex_ai</span><span className="t-op">,</span></span></>,
-  <><span style={{marginLeft:20}}><span className="t-fn">prompt_engineering</span></span></>,
-  <><span className="t-op">)</span></>,
-  <></>,
-  <><span className="t-kw">from </span><span className="t-var">etl</span><span className="t-kw"> import </span><span className="t-fn">pipelines</span><span className="t-op">, </span><span className="t-fn">data_modeling</span></>,
+const pySkillLines = [
+  { type: 'file', text: 'skills.py  —  Data & AI stack' },
+  { type: 'empty' },
+  { type: 'header', text: '── Data & Analytics ───────────────────────' },
+  { type: 'skills', text: 'Python · SQL · Pandas · NumPy · Scikit-learn' },
+  { type: 'skills', text: 'Tableau · Power BI · Excel · Streamlit' },
+  { type: 'skills', text: 'Matplotlib · Data Cleaning · Reporting' },
+  { type: 'empty' },
+  { type: 'header', text: '── AI / Machine Learning ──────────────────' },
+  { type: 'skills', text: 'Machine Learning · Deep Learning · NLP' },
+  { type: 'skills', text: 'RAG Pipelines · Prompt Engineering' },
+  { type: 'skills', text: 'Claude API · Amazon Bedrock · Vertex AI' },
+  { type: 'empty' },
+  { type: 'header', text: '── Data Engineering ───────────────────────' },
+  { type: 'skills', text: 'ETL Pipelines · Data Modeling · SQL Reporting' },
+  { type: 'skills', text: 'Power Query · Anomaly Detection' },
 ];
 
-const tsLines = [
-  <><span className="t-cmt">// skills.ts — Web & Cloud stack</span></>,
-  <></>,
-  <><span className="t-kw">import </span><span className="t-op">{'{ '}</span><span className="t-fn">React</span><span className="t-op">, </span><span className="t-fn">FastAPI</span><span className="t-op">, </span><span className="t-fn">Firebase</span><span className="t-op"> {'}'}</span></>,
-  <><span style={{marginLeft:20}}><span className="t-kw">from </span><span className="t-str">'@web/stack'</span><span className="t-op">;</span></span></>,
-  <></>,
-  <><span className="t-kw">import </span><span className="t-op">{'{ '}</span><span className="t-fn">PostgreSQL</span><span className="t-op">, </span><span className="t-fn">MySQL</span><span className="t-op">, </span><span className="t-fn">Docker</span><span className="t-op">, </span><span className="t-fn">Git</span><span className="t-op"> {'}'}</span></>,
-  <><span style={{marginLeft:20}}><span className="t-kw">from </span><span className="t-str">'@infra/tools'</span><span className="t-op">;</span></span></>,
-  <></>,
-  <><span className="t-kw">import type </span><span className="t-op">{'{ '}</span><span className="t-type">AWS</span><span className="t-op">, </span><span className="t-type">GCP</span><span className="t-op">, </span><span className="t-type">Azure</span><span className="t-op"> {'}'}</span></>,
-  <><span style={{marginLeft:20}}><span className="t-kw">from </span><span className="t-str">'@cloud/providers'</span><span className="t-op">;</span></span></>,
-  <></>,
-  <><span className="t-kw">import type </span><span className="t-op">{'{ '}</span><span className="t-type">AzureAI</span><span className="t-op">, </span><span className="t-type">RESTAPIs</span><span className="t-op"> {'}'}</span></>,
-  <><span style={{marginLeft:20}}><span className="t-kw">from </span><span className="t-str">'@microsoft/azure-ai'</span><span className="t-op">;</span></span></>,
-  <></>,
-  <><span className="t-kw">export default </span><span className="t-kw">function </span><span className="t-fn">buildProducts</span><span className="t-op">()</span><span className="t-op"> {'{'}</span></>,
-  <><span style={{marginLeft:20}}><span className="t-kw">return </span><span className="t-str">"ship"</span><span className="t-op">;</span></span></>,
-  <><span className="t-op">{'}'}</span></>,
+const tsSkillLines = [
+  { type: 'file', text: 'skills.ts  —  Engineering & Cloud' },
+  { type: 'empty' },
+  { type: 'header', text: '── Web & Full-Stack ────────────────────────' },
+  { type: 'skills', text: 'React · FastAPI · Firebase · REST APIs' },
+  { type: 'skills', text: 'PostgreSQL · MySQL · Docker · Git · GitHub' },
+  { type: 'empty' },
+  { type: 'header', text: '── Cloud Platforms ─────────────────────────' },
+  { type: 'skills', text: 'Amazon Web Services (AWS) · Google Cloud' },
+  { type: 'skills', text: 'Microsoft Azure · Azure AI Services' },
+  { type: 'empty' },
+  { type: 'header', text: '── Languages ───────────────────────────────' },
+  { type: 'skills', text: 'Python  ·  TypeScript  ·  SQL  ·  Bash' },
+  { type: 'empty' },
+  { type: 'header', text: '── Tools & Workflow ────────────────────────' },
+  { type: 'skills', text: 'VS Code · Jupyter · Postman · Figma' },
 ];
+
+function SkillLines({ lines, lang }: { lines: typeof pySkillLines; lang: string }) {
+  const cmt = 'rgba(212,212,212,0.28)';
+  const txt = 'rgba(212,212,212,0.65)';
+  const hdr = '#569CD6';
+
+  return (
+    <>
+      {lines.map((line, i) => {
+        if (line.type === 'empty') {
+          return (
+            <div key={i} style={{ display: 'flex', minHeight: '0.55em' }}>
+              <span className="ln">{i + 1}</span>
+            </div>
+          );
+        }
+        if (line.type === 'file') {
+          return (
+            <div key={i} style={{ display: 'flex', minHeight: '1.1em' }}>
+              <span className="ln">{i + 1}</span>
+              <span style={{ color: cmt, fontStyle: 'italic' }}>{lang === 'py' ? '# ' : '// '}{line.text}</span>
+            </div>
+          );
+        }
+        if (line.type === 'header') {
+          return (
+            <div key={i} style={{ display: 'flex', minHeight: '1.1em' }}>
+              <span className="ln">{i + 1}</span>
+              <span><span style={{ color: cmt }}>{lang === 'py' ? '# ' : '// '}</span><span style={{ color: hdr }}>{line.text}</span></span>
+            </div>
+          );
+        }
+        if (line.type === 'skills') {
+          return (
+            <div key={i} style={{ display: 'flex', minHeight: '1.1em' }}>
+              <span className="ln">{i + 1}</span>
+              <span style={{ color: cmt }}>{lang === 'py' ? '#  ' : '//  '}<span style={{ color: txt }}>{line.text}</span></span>
+            </div>
+          );
+        }
+        return null;
+      })}
+    </>
+  );
+}
 
 export default function Skills() {
   const ref = useRef<HTMLElement>(null);
@@ -62,7 +104,7 @@ export default function Skills() {
           <div className="code-block">
             <div className="code-tab-bar">
               <div style={{ display: 'flex', gap: '6px', marginRight: '12px' }}>
-                {['#FF5F57','#FFBD2E','#28CA41'].map(c => (
+                {['#FF5F57', '#FFBD2E', '#28CA41'].map(c => (
                   <div key={c} style={{ width: '9px', height: '9px', borderRadius: '50%', background: c, opacity: 0.65 }} />
                 ))}
               </div>
@@ -72,12 +114,7 @@ export default function Skills() {
               </div>
             </div>
             <div className="code-body">
-              {pyLines.map((line, i) => (
-                <div key={i} style={{ display: 'flex', minHeight: '1.1em' }}>
-                  <span className="ln">{i + 1}</span>
-                  <span style={{ flex: 1 }}>{line}</span>
-                </div>
-              ))}
+              <SkillLines lines={pySkillLines} lang="py" />
             </div>
             <div className="code-status-bar">
               <span style={{ color: '#6A9955' }}>Python 3.11</span>
@@ -89,7 +126,7 @@ export default function Skills() {
           <div className="code-block">
             <div className="code-tab-bar">
               <div style={{ display: 'flex', gap: '6px', marginRight: '12px' }}>
-                {['#FF5F57','#FFBD2E','#28CA41'].map(c => (
+                {['#FF5F57', '#FFBD2E', '#28CA41'].map(c => (
                   <div key={c} style={{ width: '9px', height: '9px', borderRadius: '50%', background: c, opacity: 0.65 }} />
                 ))}
               </div>
@@ -99,12 +136,7 @@ export default function Skills() {
               </div>
             </div>
             <div className="code-body">
-              {tsLines.map((line, i) => (
-                <div key={i} style={{ display: 'flex', minHeight: '1.1em' }}>
-                  <span className="ln">{i + 1}</span>
-                  <span style={{ flex: 1 }}>{line}</span>
-                </div>
-              ))}
+              <SkillLines lines={tsSkillLines} lang="ts" />
             </div>
             <div className="code-status-bar">
               <span style={{ color: '#569CD6' }}>TypeScript 5.x</span>

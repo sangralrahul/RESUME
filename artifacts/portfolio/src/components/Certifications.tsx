@@ -5,7 +5,7 @@ import { FaMicrosoft, FaAws } from 'react-icons/fa';
 import type { IconType } from 'react-icons';
 
 interface Cert {
-  typeName: string;
+  fileName: string;
   name: string;
   issuer: string;
   year: string;
@@ -16,16 +16,16 @@ interface Cert {
 
 const certs: Cert[] = [
   {
-    typeName: 'GoogleDataAnalytics',
+    fileName: 'google_analytics.py',
     name: 'Google Data Analytics Professional Certificate',
     issuer: 'Google / Coursera',
     year: '2025',
     accentColor: '#4285F4',
-    detail: 'SQL, Tableau, data cleaning, spreadsheet analysis, dashboard-driven decision making.',
+    detail: 'SQL, Tableau, data cleaning, spreadsheet analysis, dashboard-driven decisions.',
     icons: [{ Icon: SiGoogle, color: '#4285F4' }, { Icon: SiCoursera, color: '#0056D2' }],
   },
   {
-    typeName: 'MicrosoftAIMLEng',
+    fileName: 'microsoft_ai_ml.ts',
     name: 'Microsoft AI/ML Engineering Certificate',
     issuer: 'Microsoft',
     year: '2025',
@@ -34,16 +34,16 @@ const certs: Cert[] = [
     icons: [{ Icon: FaMicrosoft, color: '#00A4EF' }],
   },
   {
-    typeName: 'AnthropicClaudeAPI',
+    fileName: 'anthropic_claude.py',
     name: 'Claude API / LLM Integration',
     issuer: 'Anthropic',
     year: '2026',
     accentColor: '#D4A27F',
-    detail: 'LLM integration, prompt engineering, RAG pipeline design, cloud AI deployment.',
+    detail: 'LLM integration, prompt engineering, RAG pipelines, cloud AI deployment.',
     icons: [{ Icon: SiAnthropic, color: '#D4A27F' }],
   },
   {
-    typeName: 'ClaudeAmazonBedrock',
+    fileName: 'claude_bedrock.ts',
     name: 'Claude with Amazon Bedrock',
     issuer: 'Anthropic × AWS',
     year: '2026',
@@ -51,7 +51,7 @@ const certs: Cert[] = [
     icons: [{ Icon: SiAnthropic, color: '#D4A27F' }, { Icon: FaAws, color: '#FF9900' }],
   },
   {
-    typeName: 'ClaudeVertexAI',
+    fileName: 'claude_vertex.ts',
     name: 'Claude with Google Cloud Vertex AI',
     issuer: 'Anthropic × Google Cloud',
     year: '2026',
@@ -59,12 +59,12 @@ const certs: Cert[] = [
     icons: [{ Icon: SiAnthropic, color: '#D4A27F' }, { Icon: SiGooglecloud, color: '#4285F4' }],
   },
   {
-    typeName: 'ForageSimulations',
+    fileName: 'forage_sims.py',
     name: 'Investment Banking & Data Analytics Simulations',
     issuer: 'JPMorgan Chase & Deloitte (Forage)',
     year: '2026',
     accentColor: '#C586C0',
-    detail: 'Financial data modeling, cybersecurity reporting, Big-4 stakeholder deliverables.',
+    detail: 'Financial modeling, cybersecurity reporting, Big-4 stakeholder deliverables.',
     icons: [{ Icon: FaMicrosoft, color: '#6366F1' }],
   },
 ];
@@ -72,6 +72,11 @@ const certs: Cert[] = [
 export default function Certifications() {
   const ref = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(ref);
+
+  const cmt = 'rgba(212,212,212,0.28)';
+  const txt = 'rgba(212,212,212,0.62)';
+  const hdr = '#569CD6';
+  const key = '#9CDCFE';
 
   return (
     <section id="certifications" ref={ref} style={{ padding: '112px 0' }}>
@@ -86,70 +91,80 @@ export default function Certifications() {
           <h2 style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', color: '#D4D4D4', letterSpacing: '-0.03em' }}>
             Verified Credentials
           </h2>
-          <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.65rem', color: 'rgba(212,212,212,0.18)' }}>
-            <span className="t-cmt"># </span>{certs.length} certifications
+          <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.65rem', color: '#6A9955' }}>
+            # {certs.length} certifications
           </span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }} className="cert-grid">
-          {certs.map((cert, idx) => (
-            <div key={idx} className="code-block" style={{ borderRadius: '14px' }}>
-              {/* Mini tab bar */}
-              <div style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                padding: '10px 14px',
-                background: 'rgba(255,255,255,0.02)',
-                borderBottom: '1px solid rgba(86,156,214,0.08)',
-              }}>
-                <div style={{ display: 'flex', gap: '6px' }}>
-                  {cert.icons.map(({ Icon, color }, i) => (
-                    <div key={i} style={{
-                      width: '30px', height: '30px', borderRadius: '8px',
-                      background: `${color}12`, border: `1px solid ${color}22`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <Icon style={{ color, fontSize: '0.85rem' }} />
-                    </div>
-                  ))}
-                </div>
-                <span style={{
-                  fontFamily: 'JetBrains Mono', fontSize: '0.6rem',
-                  background: `${cert.accentColor}10`,
-                  color: cert.accentColor,
-                  border: `1px solid ${cert.accentColor}22`,
-                  padding: '2px 8px', borderRadius: '4px',
-                }}>
-                  {cert.year}
-                </span>
-              </div>
-
-              {/* Code-style cert display */}
-              <div style={{ padding: '16px 16px', fontFamily: 'JetBrains Mono', fontSize: '0.71rem', lineHeight: 1.8 }}>
-                <div>
-                  <span className="t-kw">type </span>
-                  <span className="t-type">{cert.typeName}</span>
-                  <span className="t-op"> = {'{'}</span>
-                </div>
-                <div style={{ marginLeft: 16 }}>
-                  <span className="t-var">issuer</span>
-                  <span className="t-op">: </span>
-                  <span className="t-str">"{cert.issuer}"</span>
-                  <span className="t-op">;</span>
-                </div>
-                <div style={{ marginLeft: 16 }}>
-                  <span className="t-var">name</span>
-                  <span className="t-op">: </span>
-                  <span style={{ color: 'rgba(212,212,212,0.75)', fontFamily: 'Inter', fontSize: '0.76rem' }}>{cert.name}</span>
-                </div>
-                {cert.detail && (
-                  <div style={{ marginLeft: 16, marginTop: 4 }}>
-                    <span className="t-cmt">// {cert.detail}</span>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }} className="cert-grid">
+          {certs.map((cert, idx) => {
+            const isPy = cert.fileName.endsWith('.py');
+            const pfx = isPy ? '#' : '//';
+            return (
+              <div key={idx} className="code-block" style={{ borderRadius: '12px', display: 'flex', flexDirection: 'column' }}>
+                {/* Mini tab bar */}
+                <div className="code-tab-bar" style={{ height: '36px' }}>
+                  <div style={{ display: 'flex', gap: '5px', marginRight: '10px' }}>
+                    {cert.icons.map(({ Icon, color }, i) => (
+                      <div key={i} style={{
+                        width: '26px', height: '26px', borderRadius: '7px',
+                        background: `${color}12`, border: `1px solid ${color}22`,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      }}>
+                        <Icon style={{ color, fontSize: '0.75rem' }} />
+                      </div>
+                    ))}
                   </div>
-                )}
-                <div><span className="t-op">{'}'}</span></div>
+                  <div className="code-tab active" style={{ fontSize: '0.62rem' }}>
+                    <div className="code-tab-dot" style={{ background: cert.accentColor, width: '6px', height: '6px' }} />
+                    {cert.fileName}
+                  </div>
+                </div>
+
+                {/* Comment-format cert content */}
+                <div className="code-body" style={{ padding: '14px 16px', flex: 1 }}>
+                  {/* Year */}
+                  <div style={{ display: 'flex', minHeight: '1.1em', marginBottom: '2px' }}>
+                    <span className="ln">1</span>
+                    <span>
+                      <span style={{ color: cmt }}>{pfx}  </span>
+                      <span style={{ color: key, display: 'inline-block', minWidth: '48px' }}>Year</span>
+                      <span style={{ color: 'rgba(212,212,212,0.3)', margin: '0 6px' }}>→</span>
+                      <span style={{ color: cert.accentColor }}>{cert.year}</span>
+                    </span>
+                  </div>
+                  {/* Issuer */}
+                  <div style={{ display: 'flex', minHeight: '1.1em', marginBottom: '2px' }}>
+                    <span className="ln">2</span>
+                    <span>
+                      <span style={{ color: cmt }}>{pfx}  </span>
+                      <span style={{ color: key, display: 'inline-block', minWidth: '48px' }}>Issuer</span>
+                      <span style={{ color: 'rgba(212,212,212,0.3)', margin: '0 6px' }}>→</span>
+                      <span style={{ color: txt, fontFamily: 'Inter', fontSize: '0.74rem' }}>{cert.issuer}</span>
+                    </span>
+                  </div>
+                  {/* Empty */}
+                  <div style={{ display: 'flex', minHeight: '0.5em' }}>
+                    <span className="ln">3</span>
+                  </div>
+                  {/* Name */}
+                  <div style={{ display: 'flex', minHeight: '1.1em', marginBottom: '2px' }}>
+                    <span className="ln">4</span>
+                    <span>
+                      <span style={{ color: cmt }}>{pfx} </span>
+                      <span style={{ color: hdr, fontFamily: 'Inter', fontSize: '0.78rem', lineHeight: 1.5 }}>{cert.name}</span>
+                    </span>
+                  </div>
+                  {cert.detail && (
+                    <div style={{ display: 'flex', minHeight: '1.1em' }}>
+                      <span className="ln">5</span>
+                      <span style={{ color: cmt }}>{pfx}  <span style={{ color: 'rgba(212,212,212,0.38)', fontFamily: 'Inter', fontSize: '0.74rem', lineHeight: 1.6 }}>{cert.detail}</span></span>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
