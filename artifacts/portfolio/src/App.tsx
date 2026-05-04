@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import AuroraBlobs from "@/components/AuroraBlobs";
-import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -19,10 +18,9 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div style={{ background: '#0C0C17', color: '#D4D4D4', minHeight: '100vh', fontFamily: 'Inter, sans-serif', cursor: 'none', position: 'relative' }}>
+      <div style={{ background: '#0C0C17', color: '#D4D4D4', minHeight: '100vh', fontFamily: 'Inter, sans-serif', position: 'relative' }}>
         <AuroraBlobs />
         <AnimatedBackground />
-        <CustomCursor />
         <ScrollProgress />
 
         <div style={{ position: 'relative', zIndex: 2 }}>

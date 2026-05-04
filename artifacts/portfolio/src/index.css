@@ -48,7 +48,6 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
-  * { cursor: none !important; }
   body {
     font-family: 'Inter', sans-serif;
     background: var(--c-bg);
