@@ -1,8 +1,8 @@
-import express, { type Express } from "express";
+import express, { type Express, type Request, type Response } from "express";
 import cors from "cors";
 import pinoHttpImport from "pino-http";
-import router from "./routes/index";
-import { logger } from "./lib/logger";
+import router from "./routes/index.js";
+import { logger } from "./lib/logger.js";
 
 const pinoHttp: any = (pinoHttpImport as any).default ?? pinoHttpImport;
 
@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
 
-app.get("/", (_req, res) => {
+app.get("/", (_req: Request, res: Response) => {
   res.status(200).json({
     status: "ok",
     message: "Resume API Server is running",
